@@ -1,0 +1,32 @@
+# Gradle build outputs & caches
+.gradle/
+build/
+out/
+classes/
+bin/
+
+# IDE configurations
+.idea/
+*.iml
+*.ipr
+*.iws
+.settings/
+.vscode/
+.classpath
+.project
+
+# Fabric runtime directory & generated run logs
+run/
+hs_err_*.log
+replay_*.log
+*.hprof
+*.jfr
+
+# Local configurations & secrets
+local.properties
+/config/
+run/config/
+
+# OS specific files
+.DS_Store
+Thumbs.db

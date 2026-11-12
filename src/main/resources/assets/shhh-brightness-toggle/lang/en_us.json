@@ -1,0 +1,13 @@
+{
+  "key.category.shhh-brightness-toggle.main": "Shhh Brightness Toggle",
+  "key.shhh-brightness-toggle.toggle": "Toggle Brightness",
+  "key.shhh-brightness-toggle.increase": "Increase Brightness",
+  "key.shhh-brightness-toggle.decrease": "Decrease Brightness",
+  "shhh-brightness-toggle.config.title": "Shhh Brightness Toggle Settings",
+  "shhh-brightness-toggle.config.toggle": "Fullbright",
+  "shhh-brightness-toggle.config.level": "Brightness Level: %s%%",
+  "shhh-brightness-toggle.config.colored_text": "Colored Messages",
+  "shhh-brightness-toggle.message.on": "Brightness: ON (%s%%)",
+  "shhh-brightness-toggle.message.off": "Brightness: OFF",
+  "shhh-brightness-toggle.message.level": "Brightness: %s%%"
+}
