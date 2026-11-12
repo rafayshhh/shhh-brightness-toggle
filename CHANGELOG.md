@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -8,13 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - 2026-11-12
 
 ### Added
-- **Fullbright Toggle**: Instantly toggle maximum ambient brightness using the `B` key.
-- **Customizable Brightness Stepping**: Fine-tune brightness levels from 10% to 100% using `Up Arrow` (increase) and `Down Arrow` (decrease).
-- **Shader-Native Illumination**: Modifies ambient lightmap state without fake night vision potion effects, preventing unwanted potion particle effects or HUD icons.
-- **Dynamic Color Indicators**: Overlay text and settings screen slider labels smoothly shift colors across a heat-map gradient (Red -> Yellow/Gold -> Soft Green) based on brightness intensity.
-- **Color Configuration**: Added a setting to easily toggle colored feedback messages on or off.
-- **In-Game Settings Screen**: Built-in configuration GUI featuring an on/off switch, an interactive brightness slider, and colored text toggle.
-- **Mod Menu Integration**: Fully integrated with Mod Menu as an optional dependency (zero hard dependency required).
-- **Persistent Configuration**: Automatically stores user settings in `.minecraft/config/shhh-brightness-toggle.json` with self-healing error recovery and dirty-checking saves.
-- **Gamma Preservation**: Automatically saves and restores authentic player gamma settings when toggling off, disconnecting from servers, leaving worlds, or shutting down the game.
-- **Client-Side Architecture**: Pure client-side implementation with zero server packet traffic or server requirements.
+- Brightness toggle keybind (B by default) to turn fullbright on or off while playing.
+- Increase and decrease keybinds (Up Arrow and Down Arrow by default) to adjust brightness between 10% and 100% in 10% steps.
+- Lightmap-based brightness adjustment that avoids fake night vision potion effects, so no potion particles or HUD icons appear.
+- Dynamic color feedback on on-screen messages and slider labels, changing from red at low brightness to yellow at mid levels and green at maximum.
+- Colored feedback toggle in settings for players who prefer uncolored text.
+- In-game settings screen with a toggle button, brightness slider, and colored messages switch.
+- Mod Menu integration as an optional dependency.
+- JSON configuration file (`.minecraft/config/shhh-brightness-toggle.json`) that saves settings and recovers automatically if corrupted.
+- Automatic restoration of your normal vanilla brightness when toggling off, leaving a world, disconnecting from a server, or closing the game.
+- Client-side only design with zero server network traffic.

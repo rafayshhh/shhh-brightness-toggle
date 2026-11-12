@@ -1,10 +1,10 @@
 <div align="center">
 
-<img src="docs/images/icon.png" alt="Shhh... Brightness Toggle Icon" width="128" height="128" />
+<img src="docs/images/icon.png" alt="Shhh Brightness Toggle Icon" width="128" height="128" />
 
-# ☀️ Shhh... Brightness Toggle
+# Shhh Brightness Toggle
 
-**A lightweight, shader-native brightness & fullbright mod for Minecraft 26.3 on Fabric.**
+**A simple client-side brightness and fullbright mod for Minecraft 26.3 on Fabric.**
 
 [![Minecraft](https://img.shields.io/badge/Minecraft-26.3-2ea44f?style=flat-square&logo=minecraft)](https://minecraft.net/)
 [![Fabric](https://img.shields.io/badge/Loader-Fabric-lightgrey?style=flat-square&logo=fabric)](https://fabricmc.net/)
@@ -14,88 +14,88 @@
 
 <br/>
 
-*Illuminate dark caves and underwater depths cleanly with dynamic color feedback — zero fake potion swirls, zero HUD icons, zero clutter.*
+*See clearly in caves, ravines, and underwater without potion bubbles or status icons.*
 
 </div>
 
 ---
 
-## 📸 Showcase & Visual Comparisons
+## Screenshots
 
-### 1. In-Game Visibility Comparison
-Never lose your way in pitch-black mineshafts and caves again. The mod directly adjusts ambient illumination without altering your gamma preferences permanently:
+### In-Game Visibility Comparison
+See the difference in dark areas like abandoned mineshafts and caves:
 
 <p align="center">
   <img src="docs/images/showcase-comparison.jpg" alt="Without Mod vs With Mod Comparison" width="850" />
   <br/>
-  <em>Side-by-side comparison: Pitch-black cave (Left) vs. Clean, illuminated cave with Shhh... Brightness Toggle at 100% (Right).</em>
+  <em>Side-by-side comparison: Default dark cave (left) vs. Brightness enabled at 100% (right).</em>
 </p>
 
-### 2. Built-In Settings Screen (Mod Menu Integration)
-Fine-tune your experience using an intuitive in-game menu featuring an on/off toggle, dynamic color slider, and message color switch:
+### Settings Screen (Mod Menu)
+Adjust fullbright on or off, change the level with a slider, or toggle colored actionbar messages:
 
 <p align="center">
   <img src="docs/images/showcase-modmenu.jpg" alt="Customization via Mod Menu" width="850" />
   <br/>
-  <em>Configure fullbright state, percentage stepping, and dynamic color indicators directly from Mod Menu.</em>
+  <em>In-game settings screen opened from Mod Menu.</em>
 </p>
 
-### 3. Fully Rebindable Keybindings
-Control your brightness on the fly without pausing your gameplay:
+### Keybindings Menu
+Rebind any of the hotkeys directly in your normal Minecraft controls:
 
 <p align="center">
   <img src="docs/images/showcase-keybinds.jpg" alt="Customizable Controls Menu" width="850" />
   <br/>
-  <em>Quickly rebind Toggle, Increase, and Decrease hotkeys to your favorite keys or mouse buttons.</em>
+  <em>Hotkeys in Options -> Controls -> Key Binds under the Shhh Brightness Toggle category.</em>
 </p>
 
 ---
 
-## ✨ Features
+## What the Mod Does
 
-- 💡 **Instant Fullbright Toggle**: Toggle maximum visibility on and off with a single keypress (Default: <kbd>B</kbd>).
-- 🎚️ **Fine-Grained Level Stepping**: Adjust brightness from 10% to 100% in 10% steps using <kbd>↑</kbd> *(Up Arrow)* and <kbd>↓</kbd> *(Down Arrow)*.
-- 🎨 **Dynamic Color Feedback**: Actionbar notifications and settings slider labels shift colors smoothly based on brightness level (Vibrant Red at 10% ➔ Golden Yellow at 55% ➔ Clean Soft Green at 100%).
-- 🛡️ **Shader-Native Illumination**: Modifies Minecraft 26.3's native lightmap shaders directly. No Night Vision potion icons, no swirling particles, and no blindness flashing.
-- 🔄 **Safe Gamma Preservation**: Remembers your true vanilla brightness setting and restores it automatically when toggling off, disconnecting from a server, leaving a world, or closing the game.
-- ⚙️ **In-Game Settings Screen**: Accessible through **Mod Menu** (or standard controls) with an interactive slider, on/off switch, and color toggle.
-- 💾 **Self-Healing Config**: Automatically stores preferences in `.minecraft/config/shhh-brightness-toggle.json` with recovery against corrupted or empty files and dirty-checked saves.
-- ⚡ **Client-Side Only**: Runs strictly on your client. Transmits zero packets to multiplayer servers and requires no server installation.
+- **Toggle on and off with a key**: Press B (default) to turn brightness on or off whenever you need it.
+- **Step brightness up and down**: Use the Up and Down arrow keys to adjust brightness between 10% and 100% in 10% steps.
+- **Color-coded actionbar feedback**: When you change brightness, an on-screen message shows the current level. The text color shifts from red at low levels, to yellow at mid levels, to green at 100%. You can turn this off in settings if you prefer plain text.
+- **No potion icons or particles**: Unlike older fullbright tricks that applied a fake Night Vision effect, this mod hooks directly into the lightmap rendering. That means no potion swirls on your screen and no potion icon in your inventory or HUD.
+- **Remembers your normal brightness**: When you turn the mod off, leave a world, disconnect from a server, or close the game, your original vanilla brightness setting is restored automatically.
+- **In-game config screen**: If you have Mod Menu installed, you get a clean settings screen with an on/off button, a slider, and a color toggle. Mod Menu is optional; the mod works fine without it.
+- **Saves your settings**: Preferences are saved in your config folder and reload automatically next time you launch the game. If the config file ever gets corrupted or emptied, the mod resets to safe defaults without crashing.
+- **Client-side only**: Everything runs on your computer. It sends no network packets to servers and does not need to be installed on any server you play on.
 
 ---
 
-## ⌨️ Default Keybindings
+## Default Controls
 
-All hotkeys can be rebound in **Options ➔ Controls ➔ Key Binds**:
+You can rebind all three keys in **Options -> Controls -> Key Binds**:
 
-| Action | Default Key | Category | Description |
+| Action | Default Key | Category | What it does |
 | :--- | :---: | :--- | :--- |
-| **Toggle Brightness** | <kbd>B</kbd> | Shhh Brightness Toggle | Turns fullbright ON or OFF instantly |
-| **Increase Brightness** | <kbd>↑</kbd> *(Up Arrow)* | Shhh Brightness Toggle | Steps brightness level up by +10% |
-| **Decrease Brightness** | <kbd>↓</kbd> *(Down Arrow)* | Shhh Brightness Toggle | Steps brightness level down by -10% |
+| **Toggle Brightness** | <kbd>B</kbd> | Shhh Brightness Toggle | Turns fullbright on or off |
+| **Increase Brightness** | <kbd>↑</kbd> (Up Arrow) | Shhh Brightness Toggle | Increases brightness by 10% |
+| **Decrease Brightness** | <kbd>↓</kbd> (Down Arrow) | Shhh Brightness Toggle | Decreases brightness by 10% |
 
 ---
 
-## 📦 Requirements & Installation
+## Requirements and Installation
 
-### Requirements:
-- **Minecraft**: `26.3`
-- **Fabric Loader**: `>=0.20.1`
-- **Fabric API**: `0.166.2+26.3`
-- **Java**: `Java 25` (included with official Minecraft 26.3 launcher installs)
-- **Mod Menu**: *(Optional)* Recommended for in-game configuration GUI.
+### Requirements
+- **Minecraft**: 26.3
+- **Fabric Loader**: 0.20.1 or newer
+- **Fabric API**: 0.166.2+26.3
+- **Java**: 25 (bundled with modern Minecraft launchers)
+- **Mod Menu**: (Optional) For the in-game settings screen
 
-### Installation Steps:
-1. Ensure **[Fabric Loader](https://fabricmc.net/use/)** is installed for Minecraft **26.3**.
-2. Place **[Fabric API](https://modrinth.com/mod/fabric-api)** into your `.minecraft/mods` folder.
-3. Download `shhh-brightness-toggle-1.0.0+mc26.3.jar` from **[Modrinth](https://modrinth.com/mod/shhh-brightness-toggle)**, **[CurseForge](https://curseforge.com/minecraft/mc-mods/shhh-brightness-toggle)**, or **[GitHub Releases](https://github.com/rafayshhh/shhh-brightness-toggle/releases)** and place it into your `.minecraft/mods` folder.
-4. *(Optional)* Download **[Mod Menu](https://modrinth.com/mod/modmenu)** to customize settings in-game.
+### How to Install
+1. Make sure you have **[Fabric Loader](https://fabricmc.net/use/)** installed for Minecraft 26.3.
+2. Download **[Fabric API](https://modrinth.com/mod/fabric-api)** and drop the `.jar` file into your `.minecraft/mods` folder.
+3. Download `shhh-brightness-toggle-1.0.0+mc26.3.jar` from **[Modrinth](https://modrinth.com/mod/shhh-brightness-toggle)**, **[CurseForge](https://curseforge.com/minecraft/mc-mods/shhh-brightness-toggle)**, or **[GitHub Releases](https://github.com/rafayshhh/shhh-brightness-toggle/releases)** and put it into `.minecraft/mods`.
+4. (Optional) Put **[Mod Menu](https://modrinth.com/mod/modmenu)** into `.minecraft/mods` if you want to open the config screen in-game.
 
 ---
 
-## 🛠️ Configuration File
+## Config File
 
-Preferences are saved to `.minecraft/config/shhh-brightness-toggle.json`:
+Your settings are saved in `.minecraft/config/shhh-brightness-toggle.json`:
 
 ```json
 {
@@ -105,62 +105,61 @@ Preferences are saved to `.minecraft/config/shhh-brightness-toggle.json`:
 }
 ```
 
-- `enabled` (*boolean*): Whether fullbright is active upon entering a world.
-- `level` (*float*): Brightness strength from `0.1` (10%) to `1.0` (100%).
-- `coloredText` (*boolean*): Enables dynamic color feedback on overlay text and slider labels.
+- `enabled` (true / false): Whether fullbright is on when you load into a world.
+- `level` (0.1 to 1.0): Brightness level from 10% to 100%.
+- `coloredText` (true / false): Whether actionbar messages and the settings slider use color-coded text.
 
 ---
 
-## 🧩 Compatibility & Server Notice
+## Compatibility and Server Rules
 
-- **Sodium & Iris**: Designed to be compatible with Sodium and Iris by injecting at `TAIL` without replacing or canceling vanilla rendering pipelines, but not yet fully tested with all mods. Please report issues on GitHub.
-- **Server Safety Notice**: Some servers do not allow fullbright. Check the server rules before using this mod. Use at your own risk.
-
----
-
-## ⚠️ Known Risks
-
-This mod hooks into Minecraft's internal rendering class (`LightmapRenderStateExtractor`). In future Minecraft updates, Mojang may rename, refactor, or replace this internal class. Because of this, each new Minecraft version requires testing and may require a mod update to remain functional.
+- **Sodium and Iris**: The mod injects into Minecraft's lightmap rendering at the end of the method rather than replacing it. It is designed to work alongside Sodium and Iris, but has not yet been tested across every combination of lighting mods. If you notice any conflicts, please report them on GitHub.
+- **Server Rules**: Some multiplayer servers consider fullbright an unfair advantage. Always check server rules before using this mod online. Use at your own risk.
 
 ---
 
-## 🔨 Building from Source
+## Updating Between Versions
 
-To compile the mod yourself:
+This mod hooks into Minecraft's internal lightmap extractor (`LightmapRenderStateExtractor`). In future Minecraft updates, Mojang may change how internal lighting works. Each new Minecraft update will need to be checked, and a new mod version will be published if necessary.
+
+---
+
+## Building from Source
+
+If you want to build the mod yourself:
 
 1. Clone the repository:
    ```cmd
    git clone https://github.com/rafayshhh/shhh-brightness-toggle.git
    cd shhh-brightness-toggle
    ```
-2. Build with Gradle wrapper using Java 25:
+2. Build with the Gradle wrapper using Java 25:
    ```cmd
    set "JAVA_HOME=C:\Program Files\Java\jdk-25.0.5.0.3"&& gradlew.bat build
    ```
-3. Your compiled artifact will be generated at:
+3. The built JAR will be at:
    `build/libs/shhh-brightness-toggle-1.0.0+mc26.3.jar`
 
 ---
 
-## 🐛 Bug Reports & Feature Requests
+## Bug Reports and Feedback
 
-Found a bug or have an idea to improve the mod?
-- **Bug Reports**: Open an issue using our [Bug Report Template](https://github.com/rafayshhh/shhh-brightness-toggle/issues/new?template=bug_report.yml).
-- **Feature Requests**: Suggest enhancements via our [Feature Request Template](https://github.com/rafayshhh/shhh-brightness-toggle/issues/new?template=feature_request.yml).
-- **Discussions & Code**: Visit the official [GitHub Repository](https://github.com/rafayshhh/shhh-brightness-toggle).
+Found a bug or have a suggestion?
+- Report bugs: [Open a Bug Report](https://github.com/rafayshhh/shhh-brightness-toggle/issues/new?template=bug_report.yml)
+- Suggest features: [Open a Feature Request](https://github.com/rafayshhh/shhh-brightness-toggle/issues/new?template=feature_request.yml)
+- Source code: [GitHub Repository](https://github.com/rafayshhh/shhh-brightness-toggle)
 
 ---
 
-## 👤 Credits & Author
+## Author and Credits
 
-- **Creator & Developer**: **RafayShhh**
+- **Created by**: **RafayShhh**
   - GitHub: [@rafayshhh](https://github.com/rafayshhh)
   - Modrinth: [RafayShhh](https://modrinth.com/user/RafayShhh)
 
 ---
 
-## 📄 License & Legal
+## License
 
-This project is licensed under the [MIT License](LICENSE) &copy; 2026 **RafayShhh**.
-
-**NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG.**
+This project is open source and available under the [MIT License](LICENSE).
+Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft.

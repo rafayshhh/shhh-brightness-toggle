@@ -3,14 +3,14 @@
 	"id": "shhh-brightness-toggle",
 	"version": "${version}",
 	"name": "Shhh Brightness Toggle",
-	"description": "A lightweight client-side mod that toggles full brightness and lets you adjust your brightness level with dynamic color feedback.",
+	"description": "A simple client-side brightness mod for Minecraft 26.3. Lets you toggle fullbright with a keybind, step the brightness level up and down, and adjust settings in-game.",
 	"authors": [
 		"RafayShhh"
 	],
 	"contact": {
 		"homepage": "https://modrinth.com/mod/shhh-brightness-toggle",
-		"sources": "https://github.com/RafayShhh/shhh-brightness-toggle",
-		"issues": "https://github.com/RafayShhh/shhh-brightness-toggle/issues"
+		"sources": "https://github.com/rafayshhh/shhh-brightness-toggle",
+		"issues": "https://github.com/rafayshhh/shhh-brightness-toggle/issues"
 	},
 	"license": "MIT",
 	"icon": "assets/shhh-brightness-toggle/icon.png",
