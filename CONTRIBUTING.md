@@ -14,7 +14,18 @@ Thank you for your interest in improving Shhh Brightness Toggle.
 4. Clean Code: Keep the codebase readable, well-commented, and lightweight.
 
 ## Building from Source
+Use JDK 25. Set `JAVA_HOME` to your JDK 25 directory, then run the Gradle build.
+
+**Windows (Command Prompt):**
 ```cmd
-set "JAVA_HOME=C:\Program Files\Java\jdk-25.0.5.0.3"&& gradlew.bat build
+set "JAVA_HOME=C:\Path\To\Your\JDK-25"
+gradlew.bat build
 ```
+
+**Linux / macOS:**
+```bash
+export JAVA_HOME=/path/to/your/jdk-25
+./gradlew build
+```
+
 The compiled JAR will be in `build/libs/`.
