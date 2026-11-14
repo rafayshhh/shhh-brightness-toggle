@@ -26,6 +26,7 @@
 | :--- | :--- | :--- | :--- |
 | 26.3 | Fabric | Released | `main` |
 | 26.2 | Fabric | Released | `mc/26.2` |
+| 26.1.2 | Fabric | Released | `mc/26.1.2` |
 
 ---
 
