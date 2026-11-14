@@ -4,9 +4,9 @@
 
 # Shhh Brightness Toggle
 
-**A simple client-side brightness and fullbright mod for Minecraft 26.3 on Fabric.**
+**A simple client-side brightness and fullbright mod for Minecraft 26.2 on Fabric.**
 
-[![Minecraft](https://img.shields.io/badge/Minecraft-26.3-2ea44f?style=flat-square&logo=minecraft)](https://minecraft.net/)
+[![Minecraft](https://img.shields.io/badge/Minecraft-26.2-2ea44f?style=flat-square&logo=minecraft)](https://minecraft.net/)
 [![Fabric](https://img.shields.io/badge/Loader-Fabric-lightgrey?style=flat-square&logo=fabric)](https://fabricmc.net/)
 [![Java](https://img.shields.io/badge/Java-25-orange?style=flat-square&logo=openjdk)](https://adoptium.net/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](LICENSE)
@@ -17,6 +17,14 @@
 *See clearly in caves, ravines, and underwater without potion bubbles or status icons.*
 
 </div>
+
+---
+
+## Supported Versions
+
+| Minecraft Version | Mod Loader | Status |
+| :--- | :--- | :--- |
+| 26.2 | Fabric | Released |
 
 ---
 
@@ -79,16 +87,16 @@ You can rebind all three keys in **Options -> Controls -> Key Binds**:
 ## Requirements and Installation
 
 ### Requirements
-- **Minecraft**: 26.3
+- **Minecraft**: 26.2
 - **Fabric Loader**: 0.20.1 or newer
-- **Fabric API**: 0.166.2+26.3
+- **Fabric API**: 0.161.0+26.2
 - **Java**: 25 (bundled with modern Minecraft launchers)
 - **Mod Menu**: (Optional) For the in-game settings screen
 
 ### How to Install
-1. Make sure you have **[Fabric Loader](https://fabricmc.net/use/)** installed for Minecraft 26.3.
+1. Make sure you have **[Fabric Loader](https://fabricmc.net/use/)** installed for Minecraft 26.2.
 2. Download **[Fabric API](https://modrinth.com/mod/fabric-api)** and drop the `.jar` file into your `.minecraft/mods` folder.
-3. Download `shhh-brightness-toggle-1.0.0+mc26.3.jar` from **[Modrinth](https://modrinth.com/mod/shhh-brightness-toggle)**, **[CurseForge](https://curseforge.com/minecraft/mc-mods/shhh-brightness-toggle)**, or **[GitHub Releases](https://github.com/rafayshhh/shhh-brightness-toggle/releases)** and put it into `.minecraft/mods`.
+3. Download `shhh-brightness-toggle-1.0.0+mc26.2.jar` from **[GitHub Releases](https://github.com/rafayshhh/shhh-brightness-toggle/releases)**, **[CurseForge](https://www.curseforge.com/minecraft/mc-mods/shhh-brightness-toggle)**, or **[Modrinth](https://modrinth.com/mod/shhh-brightness-toggle)** (pending review) and put it into `.minecraft/mods`.
 4. (Optional) Put **[Mod Menu](https://modrinth.com/mod/modmenu)** into `.minecraft/mods` if you want to open the config screen in-game.
 
 ---
@@ -126,25 +134,33 @@ This mod hooks into Minecraft's internal lightmap extractor (`LightmapRenderStat
 
 ## Building from Source
 
-If you want to build the mod yourself:
+If you want to build the mod from source, use JDK 25. Set `JAVA_HOME` to your JDK 25 folder, then run `gradlew build` (Windows: `gradlew.bat build`).
 
-1. Clone the repository:
-   ```cmd
-   git clone https://github.com/rafayshhh/shhh-brightness-toggle.git
-   cd shhh-brightness-toggle
-   ```
-2. Build with the Gradle wrapper using Java 25:
-   ```cmd
-   set "JAVA_HOME=C:\Program Files\Java\jdk-25.0.5.0.3"&& gradlew.bat build
-   ```
-3. The built JAR will be at:
-   `build/libs/shhh-brightness-toggle-1.0.0+mc26.3.jar`
+**Windows (Command Prompt):**
+```cmd
+set "JAVA_HOME=C:\Path\To\Your\JDK-25"
+gradlew.bat build
+```
+
+**Linux / macOS:**
+```bash
+export JAVA_HOME=/path/to/your/jdk-25
+./gradlew build
+```
+
+The built JAR file will be located at:
+`build/libs/shhh-brightness-toggle-1.0.0+mc26.2.jar`
+
+---
+
+## Support
+
+Need help, have a question, or found a bug? Please open an issue on our [GitHub Issues](https://github.com/rafayshhh/shhh-brightness-toggle/issues) page.
 
 ---
 
 ## Bug Reports and Feedback
 
-Found a bug or have a suggestion?
 - Report bugs: [Open a Bug Report](https://github.com/rafayshhh/shhh-brightness-toggle/issues/new?template=bug_report.yml)
 - Suggest features: [Open a Feature Request](https://github.com/rafayshhh/shhh-brightness-toggle/issues/new?template=feature_request.yml)
 - Source code: [GitHub Repository](https://github.com/rafayshhh/shhh-brightness-toggle)

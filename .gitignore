@@ -5,6 +5,10 @@ out/
 classes/
 bin/
 
+# Compiled JARs (except wrapper)
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+
 # IDE configurations
 .idea/
 *.iml
