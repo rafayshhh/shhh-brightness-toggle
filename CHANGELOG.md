@@ -5,11 +5,11 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.0+mc26.1.2] - 2026-11-14
+## [1.0.0+mc26.1.1] - 2026-11-14
 
 ### Ported
-- Ported Shhh Brightness Toggle to Minecraft 26.1.2 on Fabric.
-- Compiled against Fabric Loader 0.20.1 and Fabric API 0.155.3+26.1.2.
+- Ported Shhh Brightness Toggle to Minecraft 26.1.1 on Fabric.
+- Compiled against Fabric Loader 0.20.1 and Fabric API 0.145.4+26.1.1.
 
 ### Features
 - Brightness toggle keybind (B by default) to turn fullbright on or off while playing.
