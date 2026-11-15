@@ -24,9 +24,11 @@
 
 | Minecraft Version | Mod Loader | Status | Branch |
 | :--- | :--- | :--- | :--- |
-| 26.3 | Fabric | Released | `main` |
-| 26.2 | Fabric | Released | `mc/26.2` |
-| 26.1.2 | Fabric | Released | `mc/26.1.2` |
+| 26.3 | Fabric | Released | [`main`](https://github.com/rafayshhh/shhh-brightness-toggle/tree/main) |
+| 26.2 | Fabric | Released | [`mc/26.2`](https://github.com/rafayshhh/shhh-brightness-toggle/tree/mc/26.2) |
+| 26.1.2 | Fabric | Released | [`mc/26.1.2`](https://github.com/rafayshhh/shhh-brightness-toggle/tree/mc/26.1.2) |
+| 26.1.1 | Fabric | Released | [`mc/26.1.1`](https://github.com/rafayshhh/shhh-brightness-toggle/tree/mc/26.1.1) |
+| 1.20.1 | Fabric | Released | [`mc/1.20.1`](https://github.com/rafayshhh/shhh-brightness-toggle/tree/mc/1.20.1) |
 
 ---
 
