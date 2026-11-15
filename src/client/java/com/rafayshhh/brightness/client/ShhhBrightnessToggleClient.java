@@ -5,31 +5,29 @@ import com.rafayshhh.brightness.client.config.ShhhBrightnessConfig;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
+import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.resources.Identifier;
+import net.minecraft.network.chat.TextColor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * Main client entrypoint for Shhh Brightness Toggle.
- * Handles keybind registration, gamma backup/restoration across game lifecycle events,
- * and dynamic color feedback (red at low brightness to green at high brightness).
+ * Main client entrypoint for Shhh Brightness Toggle (Minecraft 1.20.1).
+ * Option B: Pure lightmap night-vision scaling via LightTextureMixin.
+ * Includes safe diagnostics to detect silent mixin failures without per-frame overhead.
  */
 public class ShhhBrightnessToggleClient implements ClientModInitializer {
 	public static final String MOD_ID = "shhh-brightness-toggle";
-
-	public static Identifier id(String path) {
-		return Identifier.fromNamespaceAndPath(MOD_ID, path);
-	}
-
-	// Custom controls settings category
-	public static final KeyMapping.Category CATEGORY = KeyMapping.Category.register(id("main"));
+	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+	public static final String CATEGORY = "key.category.shhh-brightness-toggle.main";
 
 	// Keybind 1: Toggle Fullbright ON/OFF (Default: B)
-	public static final KeyMapping TOGGLE_KEY = KeyMappingHelper.registerKeyMapping(
+	public static final KeyMapping TOGGLE_KEY = KeyBindingHelper.registerKeyBinding(
 		new KeyMapping(
 			"key.shhh-brightness-toggle.toggle",
 			InputConstants.KEY_B,
@@ -38,7 +36,7 @@ public class ShhhBrightnessToggleClient implements ClientModInitializer {
 	);
 
 	// Keybind 2: Increase Brightness Level (Default: Up Arrow)
-	public static final KeyMapping INCREASE_KEY = KeyMappingHelper.registerKeyMapping(
+	public static final KeyMapping INCREASE_KEY = KeyBindingHelper.registerKeyBinding(
 		new KeyMapping(
 			"key.shhh-brightness-toggle.increase",
 			InputConstants.KEY_UP,
@@ -47,7 +45,7 @@ public class ShhhBrightnessToggleClient implements ClientModInitializer {
 	);
 
 	// Keybind 3: Decrease Brightness Level (Default: Down Arrow)
-	public static final KeyMapping DECREASE_KEY = KeyMappingHelper.registerKeyMapping(
+	public static final KeyMapping DECREASE_KEY = KeyBindingHelper.registerKeyBinding(
 		new KeyMapping(
 			"key.shhh-brightness-toggle.decrease",
 			InputConstants.KEY_DOWN,
@@ -55,35 +53,58 @@ public class ShhhBrightnessToggleClient implements ClientModInitializer {
 		)
 	);
 
-	// Tracks original vanilla gamma so player's preference is always preserved
-	private static double savedGamma = 1.0;
-	private static boolean hasSavedGamma = false;
+	// Diagnostic state: flag set by LightTextureMixin when its wrapped call runs
+	public static volatile boolean isMixinActive = false;
+	private static boolean hasWarned = false;
+	private static int diagnosticTicks = 0;
+
+	/**
+	 * Vanilla gamma preservation hooks.
+	 * In Option B (pure LightTexture mixin), options.gamma and options.txt are never modified,
+	 * ensuring 100% safety on world exit, disconnect, and client termination.
+	 */
+	public static void saveVanillaGamma() {
+		// Option B does not modify options.gamma or options.txt
+	}
+
+	public static void restoreVanillaGamma() {
+		// Option B does not modify options.gamma or options.txt
+	}
+
+	/**
+	 * Resets diagnostic tracking so checks begin anew upon toggle or world transition.
+	 */
+	public static void resetDiagnostic() {
+		isMixinActive = false;
+		hasWarned = false;
+		diagnosticTicks = 0;
+	}
 
 	@Override
 	public void onInitializeClient() {
 		// 1. Initialize configuration from disk
 		ShhhBrightnessConfig.load();
 
-		// 2. Preserve gamma on world connect/join
+		LOGGER.info("[Shhh Brightness Toggle] Initialized for Minecraft 1.20.1 (Lightmap Night-Vision Scaling).");
+
+		// 2. Lifecycle hooks for state consistency and diagnostic reset
 		ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> {
-			if (ShhhBrightnessConfig.get().enabled) {
-				saveVanillaGamma(client);
-				applyState();
-			}
+			saveVanillaGamma();
+			resetDiagnostic();
 		});
 
-		// 3. Restore original vanilla gamma whenever disconnecting or leaving world
 		ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> {
-			restoreVanillaGamma(client);
+			restoreVanillaGamma();
+			resetDiagnostic();
 		});
 
-		// 4. Restore original vanilla gamma when the game client shuts down
-		ClientLifecycleEvents.CLIENT_STOPPING.register(ShhhBrightnessToggleClient::restoreVanillaGamma);
+		ClientLifecycleEvents.CLIENT_STOPPING.register(client -> {
+			restoreVanillaGamma();
+		});
 
-		// 5. Client tick listener for responsive keybind handling
+		// 3. Client tick listener for keybind handling and diagnostic check
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
-			// Guard: Do nothing if not actively in-game (avoids menu/loading NPEs)
-			if (client.player == null || client.options == null) {
+			if (client.player == null) {
 				return;
 			}
 
@@ -92,10 +113,9 @@ public class ShhhBrightnessToggleClient implements ClientModInitializer {
 				ShhhBrightnessConfig config = ShhhBrightnessConfig.get();
 				config.enabled = !config.enabled;
 				ShhhBrightnessConfig.save();
+				resetDiagnostic();
 
 				if (config.enabled) {
-					saveVanillaGamma(client);
-					applyState();
 					int percent = Math.round(config.level * 100.0f);
 					sendFeedback(
 						client,
@@ -103,7 +123,6 @@ public class ShhhBrightnessToggleClient implements ClientModInitializer {
 						getLevelColor(config.level)
 					);
 				} else {
-					restoreVanillaGamma(client);
 					sendFeedback(
 						client,
 						Component.translatable("shhh-brightness-toggle.message.off"),
@@ -116,14 +135,13 @@ public class ShhhBrightnessToggleClient implements ClientModInitializer {
 			while (INCREASE_KEY.consumeClick()) {
 				ShhhBrightnessConfig config = ShhhBrightnessConfig.get();
 				if (!config.enabled) {
-					saveVanillaGamma(client);
 					config.enabled = true;
+					resetDiagnostic();
 				}
 				float next = Math.min(1.0f, (float) Math.round((config.level + 0.1f) * 10.0f) / 10.0f);
 				config.level = next;
 				ShhhBrightnessConfig.save();
 
-				applyState();
 				int percent = Math.round(next * 100.0f);
 				sendFeedback(
 					client,
@@ -136,14 +154,13 @@ public class ShhhBrightnessToggleClient implements ClientModInitializer {
 			while (DECREASE_KEY.consumeClick()) {
 				ShhhBrightnessConfig config = ShhhBrightnessConfig.get();
 				if (!config.enabled) {
-					saveVanillaGamma(client);
 					config.enabled = true;
+					resetDiagnostic();
 				}
 				float next = Math.max(0.1f, (float) Math.round((config.level - 0.1f) * 10.0f) / 10.0f);
 				config.level = next;
 				ShhhBrightnessConfig.save();
 
-				applyState();
 				int percent = Math.round(next * 100.0f);
 				sendFeedback(
 					client,
@@ -152,47 +169,25 @@ public class ShhhBrightnessToggleClient implements ClientModInitializer {
 				);
 			}
 
-			// Maintain vanilla gamma at 1.0 while brightness is active
-			if (ShhhBrightnessConfig.get().enabled && client.options.gamma().get() < 1.0) {
-				client.options.gamma().set(1.0);
+			// Safe diagnostic: if enabled but hook has not run after ~5 seconds (100 ticks) of active gameplay, warn once
+			if (ShhhBrightnessConfig.get().enabled && !isMixinActive && !client.isPaused()) {
+				diagnosticTicks++;
+				if (diagnosticTicks >= 100 && !hasWarned) {
+					hasWarned = true;
+					LOGGER.warn("Shhh Brightness Toggle: the lightmap hook did not run. Another mod (for example a lighting mod) may be replacing it.");
+					client.player.displayClientMessage(
+						Component.literal("Shhh Brightness Toggle: the lightmap hook did not run. Another mod (for example a lighting mod) may be replacing it.")
+							.withStyle(ChatFormatting.GOLD),
+						false
+					);
+					client.player.displayClientMessage(
+						Component.literal("Shhh Brightness Toggle: the lightmap hook did not run. Another mod may be replacing it.")
+							.withStyle(ChatFormatting.RED),
+						true
+					);
+				}
 			}
 		});
-	}
-
-	/**
-	 * Backs up the user's authentic vanilla brightness setting before modifying it.
-	 */
-	public static synchronized void saveVanillaGamma(Minecraft client) {
-		if (!hasSavedGamma && client != null && client.options != null) {
-			double current = client.options.gamma().get();
-			if (current <= 1.0) {
-				savedGamma = current;
-				hasSavedGamma = true;
-			}
-		}
-	}
-
-	/**
-	 * Restores the user's true vanilla brightness setting.
-	 */
-	public static synchronized void restoreVanillaGamma(Minecraft client) {
-		if (hasSavedGamma && client != null && client.options != null) {
-			client.options.gamma().set(savedGamma);
-			hasSavedGamma = false;
-		}
-	}
-
-	/**
-	 * Applies maximum gamma to the vanilla slider when fullbright is active.
-	 */
-	public static void applyState() {
-		Minecraft client = Minecraft.getInstance();
-		if (client != null && client.options != null && ShhhBrightnessConfig.get().enabled) {
-			saveVanillaGamma(client);
-			if (client.options.gamma().get() < 1.0) {
-				client.options.gamma().set(1.0);
-			}
-		}
 	}
 
 	public static boolean isBrightnessOn() {
@@ -210,7 +205,7 @@ public class ShhhBrightnessToggleClient implements ClientModInitializer {
 	 * 1.0 (100% max) -> Clean Soft Green (#55FF88)
 	 */
 	public static int getLevelColor(float level) {
-		float t = Math.clamp((level - 0.1f) / 0.9f, 0.0f, 1.0f);
+		float t = Math.max(0.0f, Math.min(1.0f, (level - 0.1f) / 0.9f));
 		int r;
 		int g;
 		int b;
@@ -237,9 +232,9 @@ public class ShhhBrightnessToggleClient implements ClientModInitializer {
 		}
 
 		if (ShhhBrightnessConfig.get().coloredText) {
-			message.withColor(rgbColor);
+			message.withStyle(style -> style.withColor(TextColor.fromRgb(rgbColor)));
 		}
 
-		client.player.sendOverlayMessage(message);
+		client.player.displayClientMessage(message, true);
 	}
 }

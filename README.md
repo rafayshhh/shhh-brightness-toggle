@@ -4,11 +4,11 @@
 
 # Shhh Brightness Toggle
 
-**A simple client-side brightness and fullbright mod for Minecraft 26.2 on Fabric.**
+**A simple client-side brightness and fullbright mod for Minecraft 1.20.1 on Fabric.**
 
-[![Minecraft](https://img.shields.io/badge/Minecraft-26.2-2ea44f?style=flat-square&logo=minecraft)](https://minecraft.net/)
+[![Minecraft](https://img.shields.io/badge/Minecraft-1.20.1-2ea44f?style=flat-square&logo=minecraft)](https://minecraft.net/)
 [![Fabric](https://img.shields.io/badge/Loader-Fabric-lightgrey?style=flat-square&logo=fabric)](https://fabricmc.net/)
-[![Java](https://img.shields.io/badge/Java-25-orange?style=flat-square&logo=openjdk)](https://adoptium.net/)
+[![Java](https://img.shields.io/badge/Java-17-orange?style=flat-square&logo=openjdk)](https://adoptium.net/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](LICENSE)
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?style=flat-square&logo=github)](https://github.com/rafayshhh/shhh-brightness-toggle)
 
@@ -24,7 +24,7 @@
 
 | Minecraft Version | Mod Loader | Status |
 | :--- | :--- | :--- |
-| 26.2 | Fabric | Released |
+| 1.20.1 | Fabric | Released |
 
 ---
 
@@ -64,8 +64,8 @@ Rebind any of the hotkeys directly in your normal Minecraft controls:
 - **Toggle on and off with a key**: Press B (default) to turn brightness on or off whenever you need it.
 - **Step brightness up and down**: Use the Up and Down arrow keys to adjust brightness between 10% and 100% in 10% steps.
 - **Color-coded actionbar feedback**: When you change brightness, an on-screen message shows the current level. The text color shifts from red at low levels, to yellow at mid levels, to green at 100%. You can turn this off in settings if you prefer plain text.
-- **No potion icons or particles**: Unlike older fullbright tricks that applied a fake Night Vision effect, this mod hooks directly into the lightmap rendering. That means no potion swirls on your screen and no potion icon in your inventory or HUD.
-- **Remembers your normal brightness**: When you turn the mod off, leave a world, disconnect from a server, or close the game, your original vanilla brightness setting is restored automatically.
+- **No potion icons or particles**: Unlike older fullbright mods that applied a fake Night Vision status effect, this mod scales the lightmap night-vision calculation directly inside Minecraft's internal `LightTexture`. That means zero potion swirls on your screen and no potion icon in your inventory or HUD.
+- **Zero options.txt tampering**: The mod does not modify `options.gamma` or leave high brightness numbers written to `options.txt`. When disabled, vanilla lighting runs completely untouched on the very next frame.
 - **In-game config screen**: If you have Mod Menu installed, you get a clean settings screen with an on/off button, a slider, and a color toggle. Mod Menu is optional; the mod works fine without it.
 - **Saves your settings**: Preferences are saved in your config folder and reload automatically next time you launch the game. If the config file ever gets corrupted or emptied, the mod resets to safe defaults without crashing.
 - **Client-side only**: Everything runs on your computer. It sends no network packets to servers and does not need to be installed on any server you play on.
@@ -87,16 +87,16 @@ You can rebind all three keys in **Options -> Controls -> Key Binds**:
 ## Requirements and Installation
 
 ### Requirements
-- **Minecraft**: 26.2
-- **Fabric Loader**: 0.20.1 or newer
-- **Fabric API**: 0.161.0+26.2
-- **Java**: 25 (bundled with modern Minecraft launchers)
-- **Mod Menu**: (Optional) For the in-game settings screen
+- **Minecraft**: 1.20.1
+- **Fabric Loader**: 0.16.10 or newer
+- **Fabric API**: 0.92.12+1.20.1
+- **Java**: 17 (bundled with Minecraft 1.20.1 launchers)
+- **Mod Menu**: (Optional) For the in-game settings screen (version 7.2.2 for 1.20.1)
 
 ### How to Install
-1. Make sure you have **[Fabric Loader](https://fabricmc.net/use/)** installed for Minecraft 26.2.
-2. Download **[Fabric API](https://modrinth.com/mod/fabric-api)** and drop the `.jar` file into your `.minecraft/mods` folder.
-3. Download `shhh-brightness-toggle-1.0.0+mc26.2.jar` from **[GitHub Releases](https://github.com/rafayshhh/shhh-brightness-toggle/releases)**, **[CurseForge](https://www.curseforge.com/minecraft/mc-mods/shhh-brightness-toggle)**, or **[Modrinth](https://modrinth.com/mod/shhh-brightness-toggle)** (pending review) and put it into `.minecraft/mods`.
+1. Make sure you have **[Fabric Loader](https://fabricmc.net/use/)** installed for Minecraft 1.20.1.
+2. Download **[Fabric API](https://modrinth.com/mod/fabric-api)** for 1.20.1 and drop the `.jar` file into your `.minecraft/mods` folder.
+3. Download `shhh-brightness-toggle-1.0.0+mc1.20.1.jar` from **[GitHub Releases](https://github.com/rafayshhh/shhh-brightness-toggle/releases)**, **[CurseForge](https://www.curseforge.com/minecraft/mc-mods/shhh-brightness-toggle)**, or **[Modrinth](https://modrinth.com/mod/shhh-brightness-toggle)** and put it into `.minecraft/mods`.
 4. (Optional) Put **[Mod Menu](https://modrinth.com/mod/modmenu)** into `.minecraft/mods` if you want to open the config screen in-game.
 
 ---
@@ -121,35 +121,28 @@ Your settings are saved in `.minecraft/config/shhh-brightness-toggle.json`:
 
 ## Compatibility and Server Rules
 
-- **Sodium and Iris**: The mod injects into Minecraft's lightmap rendering at the end of the method rather than replacing it. It is designed to work alongside Sodium and Iris, but has not yet been tested across every combination of lighting mods. If you notice any conflicts, please report them on GitHub.
+- **Shader Packs (Iris / OptiFine)**: Fullbright does not work while an external shader pack is active. Shaders replace the vanilla lightmap pipeline with custom GLSL lighting passes. When shader packs are disabled, fullbright works normally.
+- **Sodium**: Sodium replaces vanilla's lightmap generation with its own optimized pipeline. Shhh Brightness Toggle uses a non-destructive MixinExtras `@WrapOperation` hook with `require = 0`, ensuring it will never crash if Sodium or another custom renderer is installed; however, fullbright does not take effect when Sodium's custom lighting pipeline takes over.
 - **Server Rules**: Some multiplayer servers consider fullbright an unfair advantage. Always check server rules before using this mod online. Use at your own risk.
-
----
-
-## Updating Between Versions
-
-This mod hooks into Minecraft's internal lightmap extractor (`LightmapRenderStateExtractor`). In future Minecraft updates, Mojang may change how internal lighting works. Each new Minecraft update will need to be checked, and a new mod version will be published if necessary.
 
 ---
 
 ## Building from Source
 
-If you want to build the mod from source, use JDK 25. Set `JAVA_HOME` to your JDK 25 folder, then run `gradlew build` (Windows: `gradlew.bat build`).
+If you want to build the mod from source, use JDK 17 (or newer with Java 17 release target).
 
 **Windows (Command Prompt):**
 ```cmd
-set "JAVA_HOME=C:\Path\To\Your\JDK-25"
 gradlew.bat build
 ```
 
 **Linux / macOS:**
 ```bash
-export JAVA_HOME=/path/to/your/jdk-25
 ./gradlew build
 ```
 
 The built JAR file will be located at:
-`build/libs/shhh-brightness-toggle-1.0.0+mc26.2.jar`
+`build/libs/shhh-brightness-toggle-1.0.0+mc1.20.1.jar`
 
 ---
 

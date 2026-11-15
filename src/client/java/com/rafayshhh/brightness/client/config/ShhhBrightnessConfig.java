@@ -133,7 +133,7 @@ public class ShhhBrightnessConfig {
 		} else {
 			// Round to nearest 0.1 step and clamp between 0.1 (10%) and 1.0 (100%)
 			float rounded = Math.round(cfg.level * 10.0f) / 10.0f;
-			cfg.level = Math.clamp(rounded, 0.1f, 1.0f);
+			cfg.level = Math.max(0.1f, Math.min(1.0f, rounded));
 		}
 	}
 }
