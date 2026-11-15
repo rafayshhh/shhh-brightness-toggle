@@ -88,7 +88,7 @@ You can rebind all three keys in **Options -> Controls -> Key Binds**:
 
 ### Requirements
 - **Minecraft**: 1.20.1
-- **Fabric Loader**: 0.16.10 or newer
+- **Fabric Loader**: 0.14.21 or newer
 - **Fabric API**: 0.92.12+1.20.1
 - **Java**: 17 (bundled with Minecraft 1.20.1 launchers)
 - **Mod Menu**: (Optional) For the in-game settings screen (version 7.2.2 for 1.20.1)
@@ -122,7 +122,7 @@ Your settings are saved in `.minecraft/config/shhh-brightness-toggle.json`:
 ## Compatibility and Server Rules
 
 - **Shader Packs (Iris / OptiFine)**: Fullbright does not work while an external shader pack is active. Shaders replace the vanilla lightmap pipeline with custom GLSL lighting passes. When shader packs are disabled, fullbright works normally.
-- **Sodium**: Sodium replaces vanilla's lightmap generation with its own optimized pipeline. Shhh Brightness Toggle uses a non-destructive MixinExtras `@WrapOperation` hook with `require = 0`, ensuring it will never crash if Sodium or another custom renderer is installed; however, fullbright does not take effect when Sodium's custom lighting pipeline takes over.
+- **Sodium**: Sodium replaces vanilla's lightmap generation with its own optimized pipeline. Shhh Brightness Toggle uses non-destructive SpongePowered Mixin `@Redirect` hooks with `require = 0`, ensuring it will never crash if Sodium or another custom renderer is installed; however, fullbright does not take effect when Sodium's custom lighting pipeline takes over.
 - **Server Rules**: Some multiplayer servers consider fullbright an unfair advantage. Always check server rules before using this mod online. Use at your own risk.
 
 ---

@@ -5,7 +5,7 @@ Port of Shhh Brightness Toggle to Minecraft 1.20.1 on Fabric.
 ## Features
 - Fullbright Toggle: Press B (default) to turn brightness on and off while playing.
 - Brightness Level Stepping: Use the Up Arrow and Down Arrow keys (default) to increase or decrease brightness between 10% and 100% in 10% steps.
-- Lightmap Night-Vision Scaling: Adjusts ambient light levels directly through Minecraft's internal `LightTexture` via MixinExtras `@WrapOperation`, completely avoiding potion swirl particles, bubbles, or inventory HUD status icons.
+- Lightmap Night-Vision Scaling: Adjusts ambient light levels directly through Minecraft's internal `LightTexture` via SpongePowered Mixin `@Redirect`, completely avoiding potion swirl particles, bubbles, or inventory HUD status icons.
 - Real Night Vision Compatibility: If the player has an active Night Vision potion effect, the mod uses the higher of the two values so your potion effect is never degraded.
 - Zero Options Tampering: Does not touch or overwrite vanilla `options.gamma` or `options.txt`. When disabled, vanilla lighting runs completely untouched on the very next frame.
 - Dynamic Color Feedback: Actionbar messages and the settings slider display color feedback that changes based on your brightness level (red at 10%, yellow at mid levels, green at 100%). This can be turned off in the settings if you prefer plain text.
@@ -15,7 +15,7 @@ Port of Shhh Brightness Toggle to Minecraft 1.20.1 on Fabric.
 
 ## Requirements
 - Minecraft: 1.20.1
-- Fabric Loader: 0.16.10 or newer
+- Fabric Loader: 0.14.21 or newer
 - Fabric API: 0.92.12+1.20.1
 - Java: 17
 - Mod Menu: 7.2.2 (Optional, for opening the settings screen in-game)
@@ -25,7 +25,7 @@ Some multiplayer servers do not allow fullbright or brightness adjustment mods. 
 
 ## Known Risks and Compatibility
 - Shader Packs (Iris / Canvas / OptiFine): Fullbright does not work while an external shader pack is active because shaders replace the vanilla lightmap pipeline with their own custom GLSL lighting passes. When shader packs are disabled, fullbright works normally.
-- Sodium: Sodium replaces vanilla's lightmap generation with its own optimized pipeline. Shhh Brightness Toggle uses a non-destructive MixinExtras `@WrapOperation` hook with `require = 0`, ensuring it will never crash if Sodium or another custom renderer is installed; however, vanilla lightmap injection is bypassed when Sodium's custom lighting pipeline takes over.
+- Sodium: Sodium replaces vanilla's lightmap generation with its own optimized pipeline. Shhh Brightness Toggle uses non-destructive SpongePowered Mixin `@Redirect` hooks with `require = 0`, ensuring it will never crash if Sodium or another custom renderer is installed; however, vanilla lightmap injection is bypassed when Sodium's custom lighting pipeline takes over.
 
 ## Support and Feedback
 - Report bugs or request features: https://github.com/rafayshhh/shhh-brightness-toggle/issues
