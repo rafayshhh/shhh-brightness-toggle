@@ -1,0 +1,14 @@
+key.categories.shhh-brightness-toggle=Shhh Brightness Toggle
+key.shhh-brightness-toggle.toggle=Toggle Brightness
+key.shhh-brightness-toggle.increase=Increase Brightness
+key.shhh-brightness-toggle.decrease=Decrease Brightness
+
+shhh-brightness-toggle.message.enabled=Brightness: %s
+shhh-brightness-toggle.message.disabled=Brightness: Off
+shhh-brightness-toggle.gui.title=Shhh Brightness Toggle Settings
+shhh-brightness-toggle.gui.done=Done
+shhh-brightness-toggle.gui.toggle.enabled=Fullbright: Enabled
+shhh-brightness-toggle.gui.toggle.disabled=Fullbright: Disabled
+shhh-brightness-toggle.gui.colored_text.enabled=Colored Text: Enabled
+shhh-brightness-toggle.gui.colored_text.disabled=Colored Text: Disabled
+shhh-brightness-toggle.gui.slider=Brightness: %d%%
