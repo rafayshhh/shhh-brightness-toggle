@@ -34,6 +34,22 @@ unimined.minecraft {
 
 repositories {
     mavenCentral()
+    maven {
+        name = 'Mojang'
+        url = 'https://libraries.minecraft.net/'
+    }
+    maven {
+        name = 'MinecraftForge'
+        url = 'https://maven.minecraftforge.net/'
+    }
+    maven {
+        name = 'WagYourTailReleases'
+        url = 'https://maven.wagyourtail.xyz/releases'
+    }
+    maven {
+        name = 'WagYourTailSnapshots'
+        url = 'https://maven.wagyourtail.xyz/snapshots'
+    }
 }
 
 processResources {
