@@ -15,11 +15,13 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Set up Java 17
+      - name: Set up Java
         uses: actions/setup-java@v5
         with:
-          java-version: '17'
           distribution: 'temurin'
+          java-version: |
+            8
+            17
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
@@ -30,7 +32,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build with Gradle
-        run: ./gradlew build --no-daemon --debug
+        run: ./gradlew build --no-daemon --stacktrace
 
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
