@@ -43,3 +43,17 @@ processResources {
         expand 'version': project.version
     }
 }
+
+jar {
+    manifest {
+        attributes([
+            'Specification-Title'     : 'shhh-brightness-toggle',
+            'Specification-Vendor'    : 'RafayShhh',
+            'Specification-Version'   : '1.0.0',
+            'Implementation-Title'    : 'shhh-brightness-toggle',
+            'Implementation-Version'  : project.version,
+            'Implementation-Vendor'   : 'RafayShhh'
+        ])
+    }
+}
+
