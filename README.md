@@ -4,9 +4,9 @@
 
 # Shhh Brightness Toggle
 
-**A simple client-side brightness and fullbright mod for Minecraft 1.20.1 on Fabric.**
+**A simple client-side brightness and fullbright mod for Minecraft 1.20.4 on Fabric.**
 
-[![Minecraft](https://img.shields.io/badge/Minecraft-1.20.1-2ea44f?style=flat-square&logo=minecraft)](https://minecraft.net/)
+[![Minecraft](https://img.shields.io/badge/Minecraft-1.20.4-2ea44f?style=flat-square&logo=minecraft)](https://minecraft.net/)
 [![Fabric](https://img.shields.io/badge/Loader-Fabric-lightgrey?style=flat-square&logo=fabric)](https://fabricmc.net/)
 [![Java](https://img.shields.io/badge/Java-17-orange?style=flat-square&logo=openjdk)](https://adoptium.net/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](LICENSE)
@@ -24,7 +24,7 @@
 
 | Minecraft Version | Mod Loader | Status |
 | :--- | :--- | :--- |
-| 1.20.1 | Fabric | Released |
+| 1.20.4 | Fabric | Released |
 
 ---
 
