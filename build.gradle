@@ -71,3 +71,10 @@ publishing {
 		}
 	}
 }
+
+tasks.matching { it.name in ["runClient", "runServer"] }.configureEach {
+	def java17Path = System.getenv("APPDATA") + "/.minecraft/runtime/java-runtime-gamma/windows/java-runtime-gamma/bin/java.exe"
+	if (new File(java17Path).exists()) {
+		executable = java17Path
+	}
+}
