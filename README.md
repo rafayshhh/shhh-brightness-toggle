@@ -4,9 +4,9 @@
 
 # Shhh Brightness Toggle
 
-**A simple client-side brightness and fullbright mod for Minecraft 1.20.4 on Fabric.**
+**A simple client-side brightness and fullbright mod for Minecraft 1.20.2 on Fabric.**
 
-[![Minecraft](https://img.shields.io/badge/Minecraft-1.20.4-2ea44f?style=flat-square&logo=minecraft)](https://minecraft.net/)
+[![Minecraft](https://img.shields.io/badge/Minecraft-1.20.2-2ea44f?style=flat-square&logo=minecraft)](https://minecraft.net/)
 [![Fabric](https://img.shields.io/badge/Loader-Fabric-lightgrey?style=flat-square&logo=fabric)](https://fabricmc.net/)
 [![Java](https://img.shields.io/badge/Java-17-orange?style=flat-square&logo=openjdk)](https://adoptium.net/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](LICENSE)
@@ -24,7 +24,7 @@
 
 | Minecraft Version | Mod Loader | Status |
 | :--- | :--- | :--- |
-| 1.20.4 | Fabric | Released |
+| 1.20.2 | Fabric | Released |
 
 ---
 
@@ -87,16 +87,16 @@ You can rebind all three keys in **Options -> Controls -> Key Binds**:
 ## Requirements and Installation
 
 ### Requirements
-- **Minecraft**: 1.20.1
+- **Minecraft**: 1.20.2
 - **Fabric Loader**: 0.14.21 or newer
-- **Fabric API**: 0.92.12+1.20.1
-- **Java**: 17 (bundled with Minecraft 1.20.1 launchers)
-- **Mod Menu**: (Optional) For the in-game settings screen (version 7.2.2 for 1.20.1)
+- **Fabric API**: 0.91.6+1.20.2
+- **Java**: 17 (bundled with Minecraft 1.20.2 launchers)
+- **Mod Menu**: (Optional) For the in-game settings screen (version 8.0.1 for 1.20.2)
 
 ### How to Install
-1. Make sure you have **[Fabric Loader](https://fabricmc.net/use/)** installed for Minecraft 1.20.1.
-2. Download **[Fabric API](https://modrinth.com/mod/fabric-api)** for 1.20.1 and drop the `.jar` file into your `.minecraft/mods` folder.
-3. Download `shhh-brightness-toggle-1.0.0+mc1.20.1.jar` from **[GitHub Releases](https://github.com/rafayshhh/shhh-brightness-toggle/releases)**, **[CurseForge](https://www.curseforge.com/minecraft/mc-mods/shhh-brightness-toggle)**, or **[Modrinth](https://modrinth.com/mod/shhh-brightness-toggle)** and put it into `.minecraft/mods`.
+1. Make sure you have **[Fabric Loader](https://fabricmc.net/use/)** installed for Minecraft 1.20.2.
+2. Download **[Fabric API](https://modrinth.com/mod/fabric-api)** for 1.20.2 and drop the `.jar` file into your `.minecraft/mods` folder.
+3. Download `shhh-brightness-toggle-1.0.0+mc1.20.2.jar` from **[GitHub Releases](https://github.com/rafayshhh/shhh-brightness-toggle/releases)**, **[CurseForge](https://www.curseforge.com/minecraft/mc-mods/shhh-brightness-toggle)**, or **[Modrinth](https://modrinth.com/mod/shhh-brightness-toggle)** and put it into `.minecraft/mods`.
 4. (Optional) Put **[Mod Menu](https://modrinth.com/mod/modmenu)** into `.minecraft/mods` if you want to open the config screen in-game.
 
 ---
@@ -142,7 +142,7 @@ gradlew.bat build
 ```
 
 The built JAR file will be located at:
-`build/libs/shhh-brightness-toggle-1.0.0+mc1.20.1.jar`
+`build/libs/shhh-brightness-toggle-1.0.0+mc1.20.2.jar`
 
 ---
 
