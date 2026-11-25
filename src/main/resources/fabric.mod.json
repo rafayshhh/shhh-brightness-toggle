@@ -3,7 +3,7 @@
 	"id": "shhh-brightness-toggle",
 	"version": "${version}",
 	"name": "Shhh Brightness Toggle",
-	"description": "A simple client-side brightness mod for Minecraft 1.20.4. Lets you toggle fullbright with a keybind, step the brightness level up and down, and adjust settings in-game.",
+	"description": "A simple client-side brightness mod for Minecraft 1.21.1. Lets you toggle fullbright with a keybind, step the brightness level up and down, and adjust settings in-game.",
 	"authors": [
 		"RafayShhh"
 	],
@@ -31,8 +31,8 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.14.21",
-		"minecraft": "~1.20.4",
-		"java": ">=17",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
 		"fabric-api": "*"
 	},
 	"suggests": {

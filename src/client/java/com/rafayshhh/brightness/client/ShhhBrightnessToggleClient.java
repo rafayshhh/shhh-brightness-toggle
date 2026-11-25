@@ -85,7 +85,7 @@ public class ShhhBrightnessToggleClient implements ClientModInitializer {
 		// 1. Initialize configuration from disk
 		ShhhBrightnessConfig.load();
 
-		LOGGER.info("[Shhh Brightness Toggle] Initialized for Minecraft 1.20.4 (Lightmap Night-Vision Scaling).");
+		LOGGER.info("[Shhh Brightness Toggle] Initialized for Minecraft 1.21.1 (Lightmap Night-Vision Scaling).");
 
 		// 2. Lifecycle hooks for state consistency and diagnostic reset
 		ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> {

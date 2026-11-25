@@ -5,6 +5,7 @@ import com.rafayshhh.brightness.client.config.ShhhBrightnessConfig;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.LightTexture;
+import net.minecraft.core.Holder;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
@@ -15,8 +16,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 /**
  * Mixin into LightTexture.updateLightTexture to scale the lightmap night-vision factor
  * cleanly without potion icons, particle effects, or modifying game options.
- * Uses standard SpongePowered Mixin @Redirect with require=0 for maximum compatibility
- * across all Fabric Loader versions.
+ * Adapted for Minecraft 1.21.1 (Holder<MobEffect> registry architecture).
  */
 @Mixin(LightTexture.class)
 public class LightTextureMixin {
@@ -32,12 +32,12 @@ public class LightTextureMixin {
 		method = "updateLightTexture",
 		at = @At(
 			value = "INVOKE",
-			target = "Lnet/minecraft/client/player/LocalPlayer;hasEffect(Lnet/minecraft/world/effect/MobEffect;)Z"
+			target = "Lnet/minecraft/client/player/LocalPlayer;hasEffect(Lnet/minecraft/core/Holder;)Z"
 		),
 		require = 0
 	)
-	private boolean shhh_fakeNightVisionEffect(LocalPlayer player, MobEffect effect) {
-		if (effect == MobEffects.NIGHT_VISION && ShhhBrightnessConfig.get().enabled) {
+	private boolean shhh_fakeNightVisionEffect(LocalPlayer player, Holder<MobEffect> effect) {
+		if (effect.equals(MobEffects.NIGHT_VISION) && ShhhBrightnessConfig.get().enabled) {
 			return true;
 		}
 		return player.hasEffect(effect);
