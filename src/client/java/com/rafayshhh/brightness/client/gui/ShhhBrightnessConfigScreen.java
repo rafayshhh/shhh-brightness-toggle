@@ -12,7 +12,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TextColor;
 
 /**
- * In-game configuration screen for Shhh Brightness Toggle (Minecraft 1.19.4).
+ * In-game configuration screen for Shhh Brightness Toggle (Minecraft 1.19.2).
  * Accessible via Mod Menu or custom keybinds.
  */
 public class ShhhBrightnessConfigScreen extends Screen {
@@ -29,7 +29,8 @@ public class ShhhBrightnessConfigScreen extends Screen {
 		int startY = this.height / 4 + 24;
 
 		// 1. Fullbright ON/OFF Toggle Button
-		Button toggleButton = Button.builder(
+		Button toggleButton = new Button(
+			centerX, startY, 210, 20,
 			getToggleMessage(),
 			button -> {
 				ShhhBrightnessConfig config = ShhhBrightnessConfig.get();
@@ -38,7 +39,7 @@ public class ShhhBrightnessConfigScreen extends Screen {
 				ShhhBrightnessToggleClient.resetDiagnostic();
 				button.setMessage(getToggleMessage());
 			}
-		).bounds(centerX, startY, 210, 20).build();
+		);
 		addRenderableWidget(toggleButton);
 
 		// 2. Brightness Level Slider (10% to 100%)
@@ -73,7 +74,8 @@ public class ShhhBrightnessConfigScreen extends Screen {
 		addRenderableWidget(slider);
 
 		// 3. Colored Messages ON/OFF Toggle Button
-		Button colorToggleButton = Button.builder(
+		Button colorToggleButton = new Button(
+			centerX, startY + 56, 210, 20,
 			getColorToggleMessage(),
 			button -> {
 				ShhhBrightnessConfig config = ShhhBrightnessConfig.get();
@@ -87,13 +89,15 @@ public class ShhhBrightnessConfigScreen extends Screen {
 				}
 				slider.setMessage(updatedText);
 			}
-		).bounds(centerX, startY + 56, 210, 20).build();
+		);
 		addRenderableWidget(colorToggleButton);
 
 		// 4. Done Button
-		Button doneButton = Button.builder(CommonComponents.GUI_DONE, button -> onClose())
-			.bounds(centerX, startY + 96, 210, 20)
-			.build();
+		Button doneButton = new Button(
+			centerX, startY + 96, 210, 20,
+			CommonComponents.GUI_DONE,
+			button -> onClose()
+		);
 		addRenderableWidget(doneButton);
 	}
 
