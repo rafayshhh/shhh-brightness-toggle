@@ -3,7 +3,7 @@ package com.rafayshhh.brightness.client.config;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParseException;
-import net.fabricmc.loader.api.FabricLoader;
+import net.minecraftforge.fml.loading.FMLPaths;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,7 +20,7 @@ import java.nio.file.Path;
 public class ShhhBrightnessConfig {
 	private static final Logger LOGGER = LoggerFactory.getLogger("shhh-brightness-toggle");
 	private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-	private static final Path CONFIG_PATH = FabricLoader.getInstance().getConfigDir().resolve("shhh-brightness-toggle.json");
+	private static final Path CONFIG_PATH = FMLPaths.CONFIGDIR.get().resolve("shhh-brightness-toggle.json");
 
 	private static ShhhBrightnessConfig instance;
 

@@ -1,0 +1,33 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT"
+issueTrackerURL="https://github.com/rafayshhh/shhh-brightness-toggle/issues"
+
+[[mods]]
+modId="shhh_brightness_toggle"
+version="${version}"
+displayName="Shhh Brightness Toggle"
+displayURL="https://github.com/rafayshhh/shhh-brightness-toggle"
+logoFile="assets/shhh-brightness-toggle/icon.png"
+authors="RafayShhh"
+description='''
+A simple client-side brightness and fullbright mod for Minecraft 1.20.1 on Minecraft Forge.
+Lets you toggle fullbright with a keybind, step the brightness level up and down, and adjust settings in-game.
+'''
+
+[[mixins]]
+config="shhh-brightness-toggle.mixins.json"
+
+[[dependencies.shhh_brightness_toggle]]
+    modId="forge"
+    mandatory=true
+    versionRange="[47,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.shhh_brightness_toggle]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.20.1,1.20.2)"
+    ordering="NONE"
+    side="BOTH"

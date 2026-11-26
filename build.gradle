@@ -1,73 +1,92 @@
 plugins {
-	id 'fabric-loom' version "${loom_version}"
-	id 'maven-publish'
+    id 'java'
+    id 'xyz.wagyourtail.unimined' version '1.4.2-SNAPSHOT'
 }
 
-base {
-	archivesName = project.archives_base_name
-}
+group = 'com.rafayshhh.brightness'
+version = '1.0.0+mc1.20.1-forge'
+base.archivesName = 'shhh-brightness-toggle'
 
 repositories {
-	maven {
-		name = "TerraformersMC"
-		url = "https://maven.terraformersmc.com/releases/"
-	}
+    mavenCentral()
+    maven {
+        name = 'Mojang'
+        url = 'https://libraries.minecraft.net/'
+    }
+    maven {
+        name = 'MinecraftForge'
+        url = 'https://maven.minecraftforge.net/'
+    }
+    maven {
+        name = 'NeoForged'
+        url = 'https://maven.neoforged.net/releases'
+    }
+    maven {
+        name = 'WagYourTailReleases'
+        url = 'https://maven.wagyourtail.xyz/releases'
+    }
+    maven {
+        name = 'WagYourTailSnapshots'
+        url = 'https://maven.wagyourtail.xyz/snapshots'
+    }
 }
 
-loom {
-	splitEnvironmentSourceSets()
-
-	mods {
-		"shhh-brightness-toggle" {
-			sourceSet sourceSets.main
-			sourceSet sourceSets.client
-		}
-	}
-}
-
-dependencies {
-	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings loom.officialMojangMappings()
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
-	modCompileOnly "com.terraformersmc:modmenu:${project.mod_menu_version}"
-}
-
-processResources {
-	def version = project.version
-	inputs.property "version", version
-
-	filesMatching("fabric.mod.json") {
-		expand "version": version
-	}
-}
-
-tasks.withType(JavaCompile).configureEach {
-	it.options.release = 17
+repositories.configureEach { repo ->
+    if (repo instanceof MavenArtifactRepository) {
+        if (repo.url.toString().contains("neoforged.net")) {
+            repo.content {
+                includeGroupByRegex "net\\.neoforged.*"
+                includeGroup "cpw.mods"
+                includeGroup "de.oceanlabs.mcp"
+            }
+        }
+    }
 }
 
 java {
-	withSourcesJar()
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
 
-	sourceCompatibility = JavaVersion.VERSION_17
-	targetCompatibility = JavaVersion.VERSION_17
+tasks.withType(JavaCompile).configureEach {
+    options.release = 17
+    options.encoding = 'UTF-8'
+}
+
+unimined.minecraft {
+    version '1.20.1'
+
+    minecraftForge {
+        loader '47.3.0'
+        mixinConfig 'shhh-brightness-toggle.mixins.json'
+    }
+
+    mappings {
+        searge()
+        mojmap()
+    }
+
+    defaultRemapJar = true
+}
+
+processResources {
+    inputs.property 'version', project.version
+
+    filesMatching('META-INF/mods.toml') {
+        expand 'version': project.version
+    }
 }
 
 jar {
-	def projectName = project.name
-	inputs.property "projectName", projectName
-
-	from("LICENSE") {
-		rename { "${it}_$projectName"}
-	}
-}
-
-publishing {
-	publications {
-		create("mavenJava", MavenPublication) {
-			from components.java
-		}
-	}
+    manifest {
+        attributes([
+            'Specification-Title': 'shhh-brightness-toggle',
+            'Specification-Vendor': 'RafayShhh',
+            'Specification-Version': '1',
+            'Implementation-Title': project.name,
+            'Implementation-Version': project.version,
+            'Implementation-Vendor': 'RafayShhh',
+            'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
 }
