@@ -15,24 +15,26 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TextColor;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.lwjgl.glfw.GLFW;
 
 /**
- * Main client entrypoint for Shhh Brightness Toggle (Minecraft 1.18.2).
+ * Main client entrypoint for Shhh Brightness Toggle (Minecraft 1.16.5).
  * Option B: Pure lightmap night-vision scaling via LightTextureMixin.
  * Includes safe diagnostics to detect silent mixin failures without per-frame overhead.
  */
 public class ShhhBrightnessToggleClient implements ClientModInitializer {
 	public static final String MOD_ID = "shhh-brightness-toggle";
-	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+	public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 	public static final String CATEGORY = "key.category.shhh-brightness-toggle.main";
 
 	// Keybind 1: Toggle Fullbright ON/OFF (Default: B)
 	public static final KeyMapping TOGGLE_KEY = KeyBindingHelper.registerKeyBinding(
 		new KeyMapping(
 			"key.shhh-brightness-toggle.toggle",
-			InputConstants.KEY_B,
+			InputConstants.Type.KEYSYM,
+			GLFW.GLFW_KEY_B,
 			CATEGORY
 		)
 	);
@@ -41,7 +43,8 @@ public class ShhhBrightnessToggleClient implements ClientModInitializer {
 	public static final KeyMapping INCREASE_KEY = KeyBindingHelper.registerKeyBinding(
 		new KeyMapping(
 			"key.shhh-brightness-toggle.increase",
-			InputConstants.KEY_UP,
+			InputConstants.Type.KEYSYM,
+			GLFW.GLFW_KEY_UP,
 			CATEGORY
 		)
 	);
@@ -50,7 +53,8 @@ public class ShhhBrightnessToggleClient implements ClientModInitializer {
 	public static final KeyMapping DECREASE_KEY = KeyBindingHelper.registerKeyBinding(
 		new KeyMapping(
 			"key.shhh-brightness-toggle.decrease",
-			InputConstants.KEY_DOWN,
+			InputConstants.Type.KEYSYM,
+			GLFW.GLFW_KEY_DOWN,
 			CATEGORY
 		)
 	);

@@ -4,8 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParseException;
 import net.fabricmc.loader.api.FabricLoader;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.Reader;
 import java.io.Writer;
@@ -18,7 +18,7 @@ import java.nio.file.Path;
  * Handles loading, automatic error recovery, clamping, and dirty-checking saves.
  */
 public class ShhhBrightnessConfig {
-	private static final Logger LOGGER = LoggerFactory.getLogger("shhh-brightness-toggle");
+	private static final Logger LOGGER = LogManager.getLogger("shhh-brightness-toggle");
 	private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 	private static final Path CONFIG_PATH = FabricLoader.getInstance().getConfigDir().resolve("shhh-brightness-toggle.json");
 

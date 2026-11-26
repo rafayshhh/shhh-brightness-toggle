@@ -14,17 +14,6 @@ repositories {
 	}
 }
 
-loom {
-	splitEnvironmentSourceSets()
-
-	mods {
-		"shhh-brightness-toggle" {
-			sourceSet sourceSets.main
-			sourceSet sourceSets.client
-		}
-	}
-}
-
 dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings loom.officialMojangMappings()
@@ -45,14 +34,14 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach {
-	it.options.release = 17
+	it.options.release = 8
 }
 
 java {
 	withSourcesJar()
 
-	sourceCompatibility = JavaVersion.VERSION_17
-	targetCompatibility = JavaVersion.VERSION_17
+	sourceCompatibility = JavaVersion.VERSION_1_8
+	targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 jar {
@@ -70,11 +59,7 @@ publishing {
 			from components.java
 		}
 	}
-}
 
-tasks.matching { it.name in ["runClient", "runServer"] }.configureEach {
-	def java17Path = System.getenv("APPDATA") + "/.minecraft/runtime/java-runtime-gamma/windows/java-runtime-gamma/bin/java.exe"
-	if (new File(java17Path).exists()) {
-		executable = java17Path
+	repositories {
 	}
 }

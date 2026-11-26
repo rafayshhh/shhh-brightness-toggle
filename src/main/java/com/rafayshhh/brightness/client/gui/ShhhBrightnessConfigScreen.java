@@ -42,7 +42,7 @@ public class ShhhBrightnessConfigScreen extends Screen {
 				button.setMessage(getToggleMessage());
 			}
 		);
-		addRenderableWidget(toggleButton);
+		this.addButton(toggleButton);
 
 		// 2. Brightness Level Slider (10% to 100%)
 		double initialSliderValue = (ShhhBrightnessConfig.get().level - 0.1) / 0.9;
@@ -73,7 +73,7 @@ public class ShhhBrightnessConfigScreen extends Screen {
 			initialSliderText.withStyle(style -> style.withColor(TextColor.fromRgb(ShhhBrightnessToggleClient.getLevelColor(ShhhBrightnessConfig.get().level))));
 		}
 		slider.setMessage(initialSliderText);
-		addRenderableWidget(slider);
+		this.addButton(slider);
 
 		// 3. Colored Messages ON/OFF Toggle Button
 		Button colorToggleButton = new Button(
@@ -92,7 +92,7 @@ public class ShhhBrightnessConfigScreen extends Screen {
 				slider.setMessage(updatedText);
 			}
 		);
-		addRenderableWidget(colorToggleButton);
+		this.addButton(colorToggleButton);
 
 		// 4. Done Button
 		Button doneButton = new Button(
@@ -100,7 +100,7 @@ public class ShhhBrightnessConfigScreen extends Screen {
 			CommonComponents.GUI_DONE,
 			button -> onClose()
 		);
-		addRenderableWidget(doneButton);
+		this.addButton(doneButton);
 	}
 
 	@Override
@@ -119,16 +119,16 @@ public class ShhhBrightnessConfigScreen extends Screen {
 	}
 
 	private Component getToggleMessage() {
-		return CommonComponents.optionNameValue(
+		return CommonComponents.optionStatus(
 			new TranslatableComponent("shhh-brightness-toggle.config.toggle"),
-			ShhhBrightnessConfig.get().enabled ? CommonComponents.OPTION_ON : CommonComponents.OPTION_OFF
+			ShhhBrightnessConfig.get().enabled
 		);
 	}
 
 	private Component getColorToggleMessage() {
-		return CommonComponents.optionNameValue(
+		return CommonComponents.optionStatus(
 			new TranslatableComponent("shhh-brightness-toggle.config.colored_text"),
-			ShhhBrightnessConfig.get().coloredText ? CommonComponents.OPTION_ON : CommonComponents.OPTION_OFF
+			ShhhBrightnessConfig.get().coloredText
 		);
 	}
 }
