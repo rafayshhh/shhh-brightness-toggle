@@ -10,16 +10,18 @@ import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TextColor;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 
 /**
- * In-game configuration screen for Shhh Brightness Toggle (Minecraft 1.19.2).
+ * In-game configuration screen for Shhh Brightness Toggle (Minecraft 1.18.2).
  * Accessible via Mod Menu or custom keybinds.
  */
 public class ShhhBrightnessConfigScreen extends Screen {
 	private final Screen parent;
 
 	public ShhhBrightnessConfigScreen(Screen parent) {
-		super(Component.translatable("shhh-brightness-toggle.config.title"));
+		super(new TranslatableComponent("shhh-brightness-toggle.config.title"));
 		this.parent = parent;
 	}
 
@@ -44,12 +46,12 @@ public class ShhhBrightnessConfigScreen extends Screen {
 
 		// 2. Brightness Level Slider (10% to 100%)
 		double initialSliderValue = (ShhhBrightnessConfig.get().level - 0.1) / 0.9;
-		AbstractSliderButton slider = new AbstractSliderButton(centerX, startY + 28, 210, 20, CommonComponents.EMPTY, initialSliderValue) {
+		AbstractSliderButton slider = new AbstractSliderButton(centerX, startY + 28, 210, 20, TextComponent.EMPTY, initialSliderValue) {
 			@Override
 			protected void updateMessage() {
 				float currentLevel = ShhhBrightnessConfig.get().level;
 				int percent = Math.round(currentLevel * 100.0f);
-				MutableComponent text = Component.translatable("shhh-brightness-toggle.config.level", percent);
+				MutableComponent text = new TranslatableComponent("shhh-brightness-toggle.config.level", percent);
 				if (ShhhBrightnessConfig.get().coloredText) {
 					text.withStyle(style -> style.withColor(TextColor.fromRgb(ShhhBrightnessToggleClient.getLevelColor(currentLevel))));
 				}
@@ -66,7 +68,7 @@ public class ShhhBrightnessConfigScreen extends Screen {
 			}
 		};
 		int initialPercent = Math.round(ShhhBrightnessConfig.get().level * 100.0f);
-		MutableComponent initialSliderText = Component.translatable("shhh-brightness-toggle.config.level", initialPercent);
+		MutableComponent initialSliderText = new TranslatableComponent("shhh-brightness-toggle.config.level", initialPercent);
 		if (ShhhBrightnessConfig.get().coloredText) {
 			initialSliderText.withStyle(style -> style.withColor(TextColor.fromRgb(ShhhBrightnessToggleClient.getLevelColor(ShhhBrightnessConfig.get().level))));
 		}
@@ -83,7 +85,7 @@ public class ShhhBrightnessConfigScreen extends Screen {
 				ShhhBrightnessConfig.save();
 				button.setMessage(getColorToggleMessage());
 				int p = Math.round(config.level * 100.0f);
-				MutableComponent updatedText = Component.translatable("shhh-brightness-toggle.config.level", p);
+				MutableComponent updatedText = new TranslatableComponent("shhh-brightness-toggle.config.level", p);
 				if (config.coloredText) {
 					updatedText.withStyle(style -> style.withColor(TextColor.fromRgb(ShhhBrightnessToggleClient.getLevelColor(config.level))));
 				}
@@ -117,16 +119,16 @@ public class ShhhBrightnessConfigScreen extends Screen {
 	}
 
 	private Component getToggleMessage() {
-		return CommonComponents.optionStatus(
-			Component.translatable("shhh-brightness-toggle.config.toggle"),
-			ShhhBrightnessConfig.get().enabled
+		return CommonComponents.optionNameValue(
+			new TranslatableComponent("shhh-brightness-toggle.config.toggle"),
+			ShhhBrightnessConfig.get().enabled ? CommonComponents.OPTION_ON : CommonComponents.OPTION_OFF
 		);
 	}
 
 	private Component getColorToggleMessage() {
-		return CommonComponents.optionStatus(
-			Component.translatable("shhh-brightness-toggle.config.colored_text"),
-			ShhhBrightnessConfig.get().coloredText
+		return CommonComponents.optionNameValue(
+			new TranslatableComponent("shhh-brightness-toggle.config.colored_text"),
+			ShhhBrightnessConfig.get().coloredText ? CommonComponents.OPTION_ON : CommonComponents.OPTION_OFF
 		);
 	}
 }

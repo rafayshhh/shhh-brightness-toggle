@@ -1,6 +1,6 @@
-# Shhh Brightness Toggle 1.0.0 (Minecraft 1.19.2) Release Notes
+# Shhh Brightness Toggle 1.0.0 (Minecraft 1.18.2) Release Notes
 
-Port of Shhh Brightness Toggle to Minecraft 1.19.2 on Fabric.
+Port of Shhh Brightness Toggle to Minecraft 1.18.2 on Fabric.
 
 ## Features
 - Fullbright Toggle: Press B (default) to turn brightness on and off while playing.
@@ -14,11 +14,11 @@ Port of Shhh Brightness Toggle to Minecraft 1.19.2 on Fabric.
 - Client-Side Only: The mod runs entirely on your client and does not need to be installed on servers.
 
 ## Requirements
-- Minecraft: 1.19.2
+- Minecraft: 1.18.2
 - Fabric Loader: 0.14.21 or newer
-- Fabric API: 0.77.0+1.19.2
+- Fabric API: 0.76.0+1.18.2
 - Java: 17
-- Mod Menu: 4.2.0-beta.2 (Optional, for opening the settings screen in-game)
+- Mod Menu: 3.2.5 (Optional, for opening the settings screen in-game)
 
 ## Server Rules Warning
 Some multiplayer servers do not allow fullbright or brightness adjustment mods. Check your server's rules before using this mod online. Use at your own risk.

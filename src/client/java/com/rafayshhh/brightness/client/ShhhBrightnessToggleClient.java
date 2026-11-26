@@ -13,11 +13,13 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TextColor;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Main client entrypoint for Shhh Brightness Toggle (Minecraft 1.20.1).
+ * Main client entrypoint for Shhh Brightness Toggle (Minecraft 1.18.2).
  * Option B: Pure lightmap night-vision scaling via LightTextureMixin.
  * Includes safe diagnostics to detect silent mixin failures without per-frame overhead.
  */
@@ -85,7 +87,7 @@ public class ShhhBrightnessToggleClient implements ClientModInitializer {
 		// 1. Initialize configuration from disk
 		ShhhBrightnessConfig.load();
 
-		LOGGER.info("[Shhh Brightness Toggle] Initialized for Minecraft 1.19.2 (Lightmap Night-Vision Scaling).");
+		LOGGER.info("[Shhh Brightness Toggle] Initialized for Minecraft 1.18.2 (Lightmap Night-Vision Scaling).");
 
 		// 2. Lifecycle hooks for state consistency and diagnostic reset
 		ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> {
@@ -119,13 +121,13 @@ public class ShhhBrightnessToggleClient implements ClientModInitializer {
 					int percent = Math.round(config.level * 100.0f);
 					sendFeedback(
 						client,
-						Component.translatable("shhh-brightness-toggle.message.on", percent),
+						new TranslatableComponent("shhh-brightness-toggle.message.on", percent),
 						getLevelColor(config.level)
 					);
 				} else {
 					sendFeedback(
 						client,
-						Component.translatable("shhh-brightness-toggle.message.off"),
+						new TranslatableComponent("shhh-brightness-toggle.message.off"),
 						0xAAAAAA // Soft neutral gray for OFF state
 					);
 				}
@@ -145,7 +147,7 @@ public class ShhhBrightnessToggleClient implements ClientModInitializer {
 				int percent = Math.round(next * 100.0f);
 				sendFeedback(
 					client,
-					Component.translatable("shhh-brightness-toggle.message.level", percent),
+					new TranslatableComponent("shhh-brightness-toggle.message.level", percent),
 					getLevelColor(next)
 				);
 			}
@@ -164,7 +166,7 @@ public class ShhhBrightnessToggleClient implements ClientModInitializer {
 				int percent = Math.round(next * 100.0f);
 				sendFeedback(
 					client,
-					Component.translatable("shhh-brightness-toggle.message.level", percent),
+					new TranslatableComponent("shhh-brightness-toggle.message.level", percent),
 					getLevelColor(next)
 				);
 			}
@@ -176,12 +178,12 @@ public class ShhhBrightnessToggleClient implements ClientModInitializer {
 					hasWarned = true;
 					LOGGER.warn("Shhh Brightness Toggle: the lightmap hook did not run. Another mod (for example a lighting mod) may be replacing it.");
 					client.player.displayClientMessage(
-						Component.literal("Shhh Brightness Toggle: the lightmap hook did not run. Another mod (for example a lighting mod) may be replacing it.")
+						new TextComponent("Shhh Brightness Toggle: the lightmap hook did not run. Another mod (for example a lighting mod) may be replacing it.")
 							.withStyle(ChatFormatting.GOLD),
 						false
 					);
 					client.player.displayClientMessage(
-						Component.literal("Shhh Brightness Toggle: the lightmap hook did not run. Another mod may be replacing it.")
+						new TextComponent("Shhh Brightness Toggle: the lightmap hook did not run. Another mod may be replacing it.")
 							.withStyle(ChatFormatting.RED),
 						true
 					);

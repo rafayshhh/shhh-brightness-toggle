@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Build Fabric Mod (1.19.2)
+    name: Build Fabric Mod (1.18.2)
     runs-on: ubuntu-latest
 
     steps:
