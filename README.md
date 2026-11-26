@@ -37,6 +37,7 @@
 | 1.19.2 | Fabric | Released | [`mc/1.19.2`](https://github.com/rafayshhh/shhh-brightness-toggle/tree/mc/1.19.2) |
 | 1.18.2 | Fabric | Released | [`mc/1.18.2`](https://github.com/rafayshhh/shhh-brightness-toggle/tree/mc/1.18.2) |
 | 1.16.5 | Fabric | Released | [`mc/1.16.5`](https://github.com/rafayshhh/shhh-brightness-toggle/tree/mc/1.16.5) |
+| 1.12.2 | Forge | Released | [`mc/1.12.2`](https://github.com/rafayshhh/shhh-brightness-toggle/tree/mc/1.12.2) |
 | 1.8.9 | Forge | Released | [`mc/1.8.9`](https://github.com/rafayshhh/shhh-brightness-toggle/tree/mc/1.8.9) |
 
 ---
