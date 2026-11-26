@@ -5,11 +5,11 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.0+mc1.21.1] - 2026-11-25
+## [1.0.0+mc1.21.0] - 2026-11-26
 
 ### Ported
-- Initial port of Shhh Brightness Toggle to Minecraft 1.21.1 on Fabric.
-- Compiled against Java 21, Fabric Loader >=0.14.21, and Fabric API 0.102.1+1.21.1 with official Mojang mappings.
+- Initial port of Shhh Brightness Toggle to Minecraft 1.21 on Fabric.
+- Compiled against Java 21, Fabric Loader >=0.14.21, and Fabric API 0.102.0+1.21 with official Mojang mappings.
 - Adapted `LightTextureMixin` to support Minecraft 1.20.5+ `Holder<MobEffect>` registry architecture.
 
 ### Features
@@ -21,6 +21,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Dynamic color feedback on on-screen actionbar messages and slider labels, changing from red at low brightness to yellow at mid levels and green at maximum.
 - Colored feedback toggle in settings for players who prefer uncolored text.
 - In-game settings screen with a toggle button, brightness slider, and colored messages switch.
-- Mod Menu 11.0.2 integration for Minecraft 1.21.1 as an optional dependency.
+- Mod Menu 11.0.2 integration for Minecraft 1.21 as an optional dependency.
 - JSON configuration file (`.minecraft/config/shhh-brightness-toggle.json`) that saves settings and recovers automatically if corrupted.
 - Client-side only design with zero server network traffic.
