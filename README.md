@@ -29,6 +29,7 @@
 | 26.1.2 | Fabric | Released | [`mc/26.1.2`](https://github.com/rafayshhh/shhh-brightness-toggle/tree/mc/26.1.2) |
 | 26.1.1 | Fabric | Released | [`mc/26.1.1`](https://github.com/rafayshhh/shhh-brightness-toggle/tree/mc/26.1.1) |
 | 1.21.1 | Fabric | Released | [`mc/1.21.1`](https://github.com/rafayshhh/shhh-brightness-toggle/tree/mc/1.21.1) |
+| 1.21 | Fabric | Released | [`mc/1.21.0`](https://github.com/rafayshhh/shhh-brightness-toggle/tree/mc/1.21.0) |
 | 1.20.4 | Fabric | Released | [`mc/1.20.4`](https://github.com/rafayshhh/shhh-brightness-toggle/tree/mc/1.20.4) |
 | 1.20.2 | Fabric | Released | [`mc/1.20.2`](https://github.com/rafayshhh/shhh-brightness-toggle/tree/mc/1.20.2) |
 | 1.20.1 | Fabric | Released | [`mc/1.20.1`](https://github.com/rafayshhh/shhh-brightness-toggle/tree/mc/1.20.1) |
