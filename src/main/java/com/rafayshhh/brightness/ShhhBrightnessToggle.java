@@ -18,13 +18,13 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 public class ShhhBrightnessToggle {
     public static final String MODID = "shhh-brightness-toggle";
     public static final String NAME = "Shhh Brightness Toggle";
-    public static final String VERSION = "1.0.0+mc1.8.9";
+    public static final String VERSION = "1.0.0+mc1.12.2";
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
         BrightnessHandler.init();
         MinecraftForge.EVENT_BUS.register(new BrightnessHandler());
         ClientCommandHandler.instance.registerCommand(new CommandShhh());
-        System.out.println("[Shhh Brightness Toggle] Initialized for Minecraft 1.8.9 (Forge).");
+        System.out.println("[Shhh Brightness Toggle] Initialized for Minecraft 1.12.2 (Forge).");
     }
 }

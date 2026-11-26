@@ -35,7 +35,7 @@ public class ShhhBrightnessConfig {
     }
 
     private static File getConfigFile() {
-        File configDir = new File(Minecraft.getMinecraft().mcDataDir, "config");
+        File configDir = new File(Minecraft.getMinecraft().gameDir, "config");
         if (!configDir.exists()) {
             configDir.mkdirs();
         }

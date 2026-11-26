@@ -3,7 +3,7 @@ package com.rafayshhh.brightness.client.gui;
 import com.rafayshhh.brightness.client.config.ShhhBrightnessConfig;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 
 import java.io.IOException;
 
@@ -43,17 +43,17 @@ public class ShhhBrightnessConfigScreen extends GuiScreen {
 
     private String getToggleText(boolean enabled) {
         if (enabled) {
-            return "Fullbright: " + EnumChatFormatting.GREEN + "Enabled" + EnumChatFormatting.RESET;
+            return "Fullbright: " + TextFormatting.GREEN + "Enabled" + TextFormatting.RESET;
         } else {
-            return "Fullbright: " + EnumChatFormatting.RED + "Disabled" + EnumChatFormatting.RESET;
+            return "Fullbright: " + TextFormatting.RED + "Disabled" + TextFormatting.RESET;
         }
     }
 
     private String getColoredText(boolean coloredText) {
         if (coloredText) {
-            return "Colored Text: " + EnumChatFormatting.GREEN + "Enabled" + EnumChatFormatting.RESET;
+            return "Colored Text: " + TextFormatting.GREEN + "Enabled" + TextFormatting.RESET;
         } else {
-            return "Colored Text: " + EnumChatFormatting.RED + "Disabled" + EnumChatFormatting.RESET;
+            return "Colored Text: " + TextFormatting.RED + "Disabled" + TextFormatting.RESET;
         }
     }
 
@@ -78,23 +78,23 @@ public class ShhhBrightnessConfigScreen extends GuiScreen {
 
     @Override
     protected void keyTyped(char typedChar, int keyCode) throws IOException {
-        if (keyCode == 1) { // Escape
+        if (keyCode == 1) { // ESC key
             ShhhBrightnessConfig.get().save();
             this.mc.displayGuiScreen(this.parentScreen);
-        } else {
-            super.keyTyped(typedChar, keyCode);
+            return;
         }
-    }
-
-    @Override
-    public void onGuiClosed() {
-        ShhhBrightnessConfig.get().save();
+        super.keyTyped(typedChar, keyCode);
     }
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         this.drawDefaultBackground();
-        this.drawCenteredString(this.fontRendererObj, "Shhh Brightness Toggle Settings", this.width / 2, 20, 16777215);
+        this.drawCenteredString(this.fontRenderer, "Shhh Brightness Toggle - Configuration", this.width / 2, 15, 0xFFFFFF);
         super.drawScreen(mouseX, mouseY, partialTicks);
+    }
+
+    @Override
+    public boolean doesGuiPauseGame() {
+        return true;
     }
 }

@@ -2,10 +2,10 @@
   {
     "modid": "shhh-brightness-toggle",
     "name": "Shhh Brightness Toggle",
-    "description": "A simple client-side brightness mod for Minecraft 1.8.9. Lets you toggle fullbright with a keybind, step the brightness level up and down, and adjust settings in-game.",
+    "description": "A simple client-side brightness mod for Minecraft 1.12.2. Lets you toggle fullbright with a keybind, step the brightness level up and down, and adjust settings in-game.",
     "version": "${version}",
-    "mcversion": "1.8.9",
-    "url": "https://modrinth.com/mod/shhh-brightness-toggle",
+    "mcversion": "1.12.2",
+    "url": "https://github.com/rafayshhh/shhh-brightness-toggle",
     "updateUrl": "",
     "authorList": ["RafayShhh"],
     "credits": "",

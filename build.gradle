@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'com.rafayshhh.brightness'
-version = '1.0.0+mc1.8.9'
+version = '1.0.0+mc1.12.2'
 base.archivesName = 'shhh-brightness-toggle'
 
 repositories {
@@ -27,6 +27,29 @@ repositories {
     }
 }
 
+repositories.configureEach { repo ->
+    if (repo instanceof MavenArtifactRepository) {
+        if (repo.url.toString().contains("neoforged.net")) {
+            repo.content {
+                includeGroupByRegex "net\\.neoforged.*"
+                includeGroup "cpw.mods"
+                includeGroup "de.oceanlabs.mcp"
+            }
+        }
+    }
+}
+
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        if (details.requested.name == 'scala-continuations-library_2.11' && details.requested.version == '1.0.2_mc') {
+            details.useVersion '1.0.2'
+        }
+        if (details.requested.name == 'scala-continuations-plugin_2.11.1' && details.requested.version == '1.0.2_mc') {
+            details.useVersion '1.0.2'
+        }
+    }
+}
+
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
@@ -38,15 +61,15 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 unimined.minecraft {
-    version '1.8.9'
+    version '1.12.2'
 
     minecraftForge {
-        loader '11.15.1.2318-1.8.9'
+        loader '14.23.5.2860'
     }
 
     mappings {
         searge()
-        mcp('stable', '22-1.8.9')
+        mcp('stable', '39-1.12')
     }
 
     defaultRemapJar = true
@@ -63,12 +86,13 @@ processResources {
 jar {
     manifest {
         attributes([
-            'Specification-Title'     : 'shhh-brightness-toggle',
-            'Specification-Vendor'    : 'RafayShhh',
-            'Specification-Version'   : '1.0.0',
-            'Implementation-Title'    : 'shhh-brightness-toggle',
-            'Implementation-Version'  : project.version,
-            'Implementation-Vendor'   : 'RafayShhh'
+            'Specification-Title': 'shhh-brightness-toggle',
+            'Specification-Vendor': 'RafayShhh',
+            'Specification-Version': '1',
+            'Implementation-Title': project.name,
+            'Implementation-Version': project.version,
+            'Implementation-Vendor': 'RafayShhh',
+            'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
 }

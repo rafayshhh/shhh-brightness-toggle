@@ -5,7 +5,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiOptions;
 import net.minecraft.client.gui.GuiVideoSettings;
 import net.minecraft.client.settings.KeyBinding;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -57,7 +57,7 @@ public class BrightnessHandler {
 
     public static void showBrightnessMessage() {
         Minecraft mc = Minecraft.getMinecraft();
-        if (mc.thePlayer == null || mc.ingameGUI == null) {
+        if (mc.player == null || mc.ingameGUI == null) {
             return;
         }
 
@@ -65,32 +65,32 @@ public class BrightnessHandler {
         String text;
         if (!config.enabled) {
             text = config.coloredText
-                    ? EnumChatFormatting.RED + "Brightness: Off" + EnumChatFormatting.RESET
+                    ? TextFormatting.RED + "Brightness: Off" + TextFormatting.RESET
                     : "Brightness: Off";
         } else {
             int percent = Math.round(config.level * 100.0f);
             if (config.coloredText) {
-                EnumChatFormatting color;
+                TextFormatting color;
                 if (percent <= 30) {
-                    color = EnumChatFormatting.RED;
+                    color = TextFormatting.RED;
                 } else if (percent <= 70) {
-                    color = EnumChatFormatting.YELLOW;
+                    color = TextFormatting.YELLOW;
                 } else {
-                    color = EnumChatFormatting.GREEN;
+                    color = TextFormatting.GREEN;
                 }
-                text = "Brightness: " + color + percent + "%" + EnumChatFormatting.RESET;
+                text = "Brightness: " + color + percent + "%" + TextFormatting.RESET;
             } else {
                 text = "Brightness: " + percent + "%";
             }
         }
 
-        mc.ingameGUI.setRecordPlaying(text, false);
+        mc.ingameGUI.setOverlayMessage(text, false);
     }
 
     @SubscribeEvent
     public void onKeyInput(InputEvent.KeyInputEvent event) {
         Minecraft mc = Minecraft.getMinecraft();
-        if (mc.thePlayer == null) {
+        if (mc.player == null) {
             return;
         }
 
@@ -101,15 +101,15 @@ public class BrightnessHandler {
             config.save();
             showBrightnessMessage();
         } else if (KEY_INCREASE.isPressed()) {
-            config.level = Math.min(1.0f, config.level + 0.1f);
-            config.level = ShhhBrightnessConfig.clampLevel(config.level);
             config.enabled = true;
+            config.level = Math.min(1.0f, config.level + 0.1f);
+            config.level = Math.round(config.level * 10.0f) / 10.0f;
             config.save();
             showBrightnessMessage();
         } else if (KEY_DECREASE.isPressed()) {
-            config.level = Math.max(0.1f, config.level - 0.1f);
-            config.level = ShhhBrightnessConfig.clampLevel(config.level);
             config.enabled = true;
+            config.level = Math.max(0.1f, config.level - 0.1f);
+            config.level = Math.round(config.level * 10.0f) / 10.0f;
             config.save();
             showBrightnessMessage();
         }
@@ -130,12 +130,18 @@ public class BrightnessHandler {
             captureVanillaGamma();
         }
 
-        if (mc.theWorld != null && mc.thePlayer != null) {
-            ShhhBrightnessConfig config = ShhhBrightnessConfig.get();
-            if (config.enabled) {
-                float targetGamma = config.level * 10.0f;
+        if (mc.currentScreen instanceof GuiVideoSettings || mc.currentScreen instanceof GuiOptions) {
+            return;
+        }
+
+        ShhhBrightnessConfig config = ShhhBrightnessConfig.get();
+        if (config.enabled) {
+            float targetGamma = config.level * 100.0f;
+            if (Math.abs(mc.gameSettings.gammaSetting - targetGamma) > 0.01f) {
                 mc.gameSettings.gammaSetting = targetGamma;
-            } else {
+            }
+        } else {
+            if (Math.abs(mc.gameSettings.gammaSetting - savedVanillaGamma) > 0.01f) {
                 mc.gameSettings.gammaSetting = savedVanillaGamma;
             }
         }
@@ -143,15 +149,8 @@ public class BrightnessHandler {
 
     @SubscribeEvent
     public void onGuiOpen(GuiOpenEvent event) {
-        Minecraft mc = Minecraft.getMinecraft();
-        if (event.gui instanceof GuiVideoSettings || event.gui instanceof GuiOptions) {
-            if (mc.gameSettings != null) {
-                mc.gameSettings.gammaSetting = savedVanillaGamma;
-            }
-        } else if (mc.currentScreen instanceof GuiVideoSettings && event.gui == null) {
-            if (mc.gameSettings != null && mc.gameSettings.gammaSetting <= 1.0f) {
-                savedVanillaGamma = mc.gameSettings.gammaSetting;
-            }
+        if (event.getGui() instanceof GuiVideoSettings || event.getGui() instanceof GuiOptions) {
+            restoreVanillaGamma();
         }
     }
 
@@ -161,7 +160,7 @@ public class BrightnessHandler {
     }
 
     @SubscribeEvent
-    public void onDisconnect(FMLNetworkEvent.ClientDisconnectionFromServerEvent event) {
+    public void onClientDisconnect(FMLNetworkEvent.ClientDisconnectionFromServerEvent event) {
         restoreVanillaGamma();
     }
 }

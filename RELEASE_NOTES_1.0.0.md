@@ -1,23 +1,19 @@
-# Shhh Brightness Toggle 1.0.0 (Minecraft 1.8.9 Forge) Release Notes
+# Shhh Brightness Toggle 1.0.0 (Minecraft 1.12.2 Forge) Release Notes
 
-Port of Shhh Brightness Toggle to Minecraft 1.8.9 on Minecraft Forge.
+Port of Shhh Brightness Toggle to Minecraft 1.12.2 on Minecraft Forge.
 
 ## Features
 - Fullbright Toggle: Press B (default) to turn brightness on and off while playing.
-- Brightness Level Stepping: Use the Up Arrow and Down Arrow keys (default) to increase or decrease brightness between 10% and 100% in 10% steps.
-- Clean In-Memory Gamma: Scales brightness in memory without fake Night Vision effects, completely avoiding potion swirls, bubbles, or inventory HUD status icons.
-- Zero Options Tampering: Does not touch or overwrite vanilla `options.gamma` in `options.txt`. Vanilla gamma is safely restored on world leave, disconnect, and game exit.
-- Dynamic Color Feedback: Actionbar messages and the settings slider display color feedback that changes based on your brightness level (red at 10%, yellow at mid levels, green at 100%). This can be turned off in the settings if you prefer plain text.
-- In-Game Settings Screen: An in-game configuration menu accessible via `/shhh` or via the Forge Mods list ("Config" button).
-- In-Game Command: Use `/shhh` to open settings or `/shhh toggle` to toggle directly from chat.
-- OptiFine Compatible: 100% compatible with OptiFine 1.8.9 HD U M5 and standard 1.8.9 enhancements.
-- Configuration Persistence: Settings are saved to `.minecraft/config/shhh-brightness-toggle.json` and automatically reset to safe defaults if the file is missing, empty, or corrupted.
-- Client-Side Only: The mod runs entirely on your client and does not need to be installed on servers.
+- Brightness Adjustment: Press Up Arrow to increase brightness and Down Arrow to decrease brightness in 10% steps (from 10% to 100%).
+- Safe & Clean: Vanilla brightness setting is preserved in memory and restored whenever entering video settings, exiting worlds, or closing Minecraft.
+- Colored Feedback: Dynamic actionbar messages changing color from red at low levels to yellow and green at maximum, with an option to toggle off colored text.
+- In-Game Config Screen: Accessible via the Forge Mod List ("Config" button) or by typing `/shhh` in chat.
+- Client-Side Only: Runs entirely on your client and does not need to be installed on servers.
 
 ## Requirements
-- Minecraft: 1.8.9
-- Minecraft Forge: 11.15.1.2318 or newer
-- Java: 8 or newer
+- Minecraft: 1.12.2
+- Minecraft Forge: 14.23.5.2847 or newer (tested on 14.23.5.2860)
+- Java: 8+
 
 ## Server Rules Warning
 Some multiplayer servers do not allow fullbright or brightness adjustment mods. Check your server's rules before using this mod online. Use at your own risk.
