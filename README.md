@@ -24,7 +24,7 @@
 
 | Minecraft Version | Mod Loader | Status |
 | :--- | :--- | :--- |
-| 1.20.1 | Forge | Ready for Release |
+| 1.20.1 | Forge | Released |
 
 ---
 
