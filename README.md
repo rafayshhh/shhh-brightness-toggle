@@ -9,6 +9,7 @@
 [![Minecraft](https://img.shields.io/badge/Minecraft-26.3-2ea44f?style=flat-square&logo=minecraft)](https://minecraft.net/)
 [![Fabric](https://img.shields.io/badge/Loader-Fabric-lightgrey?style=flat-square&logo=fabric)](https://fabricmc.net/)
 [![Java](https://img.shields.io/badge/Java-25-orange?style=flat-square&logo=openjdk)](https://adoptium.net/)
+[![CurseForge](https://img.shields.io/badge/CurseForge-Shhh%20Brightness%20Toggle-f16436?style=flat-square&logo=curseforge)](https://www.curseforge.com/minecraft/mc-mods/shhh-brightness-toggle)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](LICENSE)
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?style=flat-square&logo=github)](https://github.com/rafayshhh/shhh-brightness-toggle)
 
@@ -99,6 +100,13 @@ You can rebind all three keys in **Options -> Controls -> Key Binds**:
 
 ---
 
+## In-Game Commands
+
+- `/shhh`: Opens the in-game configuration GUI.
+- `/shhh toggle`: Toggles fullbright state directly from chat.
+
+---
+
 ## Requirements and Installation
 
 ### Requirements
@@ -111,7 +119,7 @@ You can rebind all three keys in **Options -> Controls -> Key Binds**:
 ### How to Install
 1. Make sure you have **[Fabric Loader](https://fabricmc.net/use/)** installed for Minecraft 26.3.
 2. Download **[Fabric API](https://modrinth.com/mod/fabric-api)** and drop the `.jar` file into your `.minecraft/mods` folder.
-3. Download `shhh-brightness-toggle-1.0.0+mc26.3.jar` from **[GitHub Releases](https://github.com/rafayshhh/shhh-brightness-toggle/releases)**, **[CurseForge](https://www.curseforge.com/minecraft/mc-mods/shhh-brightness-toggle)**, or **[Modrinth](https://modrinth.com/mod/shhh-brightness-toggle)** (pending review) and put it into `.minecraft/mods`.
+3. Download `shhh-brightness-toggle-1.0.0+mc26.3.jar` from **[GitHub Releases](https://github.com/rafayshhh/shhh-brightness-toggle/releases)** or **[CurseForge](https://www.curseforge.com/minecraft/mc-mods/shhh-brightness-toggle)** and put it into `.minecraft/mods`.
 4. (Optional) Put **[Mod Menu](https://modrinth.com/mod/modmenu)** into `.minecraft/mods` if you want to open the config screen in-game.
 
 ---
@@ -186,7 +194,7 @@ Need help, have a question, or found a bug? Please open an issue on our [GitHub 
 
 - **Created by**: **RafayShhh**
   - GitHub: [@rafayshhh](https://github.com/rafayshhh)
-  - Modrinth: [RafayShhh](https://modrinth.com/user/RafayShhh)
+  - CurseForge: [RafayShhh](https://curseforge.com/members/rafayshhh)
 
 ---
 
